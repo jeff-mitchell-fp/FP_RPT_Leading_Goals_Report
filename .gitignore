@@ -1,0 +1,87 @@
+
+##############################################
+# Power BI Project (PBIP) – Safe Git tracking
+# Focus: keep definitions; exclude cached data
+##############################################
+
+# --- PBIP internal cache & per-user settings ---
+# Contains a local cached copy of the model/data; may include data → MUST ignore
+**/.pbi/cache.abf
+
+# Per-user & per-machine settings (not portable)
+**/.pbi/localSettings.json
+
+# Optional: keep editor settings out if you prefer repo‑wide consistency
+# (Docs say editorSettings.json is cross-user; uncomment next line to ignore)
+# **/.pbi/editorSettings.json
+
+# Power Query unapplied changes snapshot.
+# This file can be auto-saved and later applied; it does not store data,
+# but you may prefer to exclude to avoid noisy diffs. Comment out if you want it versioned.
+**/.pbi/unappliedChanges.json
+
+# Copilot, DAXQueries, TMDLScripts, etc. may be developer-local scratch pads.
+# Ignore if you don’t want these checked in. Comment out if your team wants them.
+**/.pbi/Copilot/
+**/.pbi/DAXQueries/
+**/.pbi/TMDLScripts/
+
+# --- Keep PBIP definitions (DO NOT IGNORE) ---
+# The following hold your model/report definitions in TMDL/PBIR:
+#   .SemanticModel/definition/ (TMDL)
+#   .Report/definition/         (PBIR)
+# Do not add ignores for those folders.
+
+# --- Binary PBIX artifacts & temp files (don’t track) ---
+# Encourage PBIP-only workflows and avoid committing large binaries
+*.pbix
+*.pbit
+*.pbix|*
+*.tmp
+*.bak
+*.xlsx
+*.csv
+~$*
+
+# --- OS/editor noise ---
+# macOS
+.DS_Store
+# Windows
+Thumbs.db
+# VS Code
+.vscode/
+.history/
+
+# -----------------------------------------------
+# Raw data files — never track these
+# -----------------------------------------------
+*.csv
+*.xlsx
+*.xls
+*.xlsm
+*.xlsb
+*.parquet
+*.json.data
+
+# -----------------------------------------------
+# Data source folders (adjust names to match yours)
+# -----------------------------------------------
+/data/
+/raw/
+/sources/
+/imports/
+/external_documentation
+
+# Claude Code - personal/local overrides only
+CLAUDE.local.md
+.claude/settings.local.json
+
+# Local AI agent preferences
+AGENTS.local.md
+
+# Local secrets
+.env
+.env.local
+
+# Temporary agent outputs
+.agent-tmp/
