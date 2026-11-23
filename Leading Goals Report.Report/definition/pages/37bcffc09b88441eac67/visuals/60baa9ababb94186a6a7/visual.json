@@ -6,7 +6,8 @@
     "y": 102,
     "z": 6000,
     "height": 68,
-    "width": 285
+    "width": 285,
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -59,24 +60,6 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "809dfbd491410972d1ae",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_AYT_BusinessUnit"
-              }
-            },
-            "Property": "Platform"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   },
   "isHidden": true
 }

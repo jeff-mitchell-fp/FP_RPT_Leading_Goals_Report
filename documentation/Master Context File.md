@@ -57,28 +57,31 @@ The cross-repository references are paths in named source repositories. They are
 | Metric presentation | Agreed | Scores uses the active catalog matrix. Trend uses one single-select Measure dropdown. |
 | Trend comparison | Agreed | Plot Score, Target and Leading Goal. Reporting Month controls the snapshot; Chart Date Range controls the chart. |
 | HR actuals-only months | Agreed | Reporting Month and Chart Date Range apply `HasActuals = TRUE`. |
+| Earliest report month | Implemented and checked in Desktop | Reporting Month on both pages and the Trend Chart Date Range are restricted to January 2023 onward, retaining source history and the actuals-only restriction. No upper bound is imposed based on target availability. |
 | Technologies scope | Agreed | Exclude Fisher & Paykel Technologies and Fisher & Paykel Technologies - China from the Business Unit slicers on both pages. This does not redefine Full Business calculations. |
-| Cross-model slicer propagation | Built, validation open | Hidden synced slicers are present. Complete the remaining acceptance scenarios before deciding whether organisation key wrappers are required. |
+| Cross-model slicer propagation | User-confirmed in Desktop | Hidden synced slicers are present and the user confirmed acceptance checks. Key-based wrappers remain conditional on a future sync failure. |
 | Published viewer access | Open | The user will check intended viewer access to the live report, composite model and both source models after publication and before wider sharing. |
 | Progression page | Parked | Reconsider after feedback on the current two-page report; tracked as BL-014. |
 | Annual target maintenance | User-managed | The user will separately write a script that generates Parquet from the manually maintained CSV source. |
-| 2027 starter targets | Open | Confirm whether the starter targets are approved for production. |
+| 2027 starter targets | Agreed | Retain the current values; the user will update them as new values are received. |
 
 ## Validation state
 
 The user confirmed the Target and Leading Goal lookups for Business Unit, Platform and Full Business. All ten Customer Service NZ pairs for October 2026 matched the Parquet source. The user also confirmed that the two Technologies entries are absent from the Business Unit slicers on both pages.
 
-Report-definition inspection confirms the two pages, current bindings, filters, page headers and Trend interactions. Remaining Desktop and published-viewer checks are listed in Page Plans and the backlog. No published-viewer validation has been recorded.
+Report-definition inspection confirms the two pages, current bindings, filters, page headers and Trend interactions. The user confirmed the remaining Desktop checks. Publication and intended-viewer validation remain outstanding.
 
 The annual seed and generated Parquet cover 2023–2027; the user reported
 refreshing the model. The user confirmed one Finance Purpose, Values & Strategy
 Trend annual Target transition against the CSV. Page Plans records the
 specific evidence and remaining validation.
 
+The user confirmed the January 2023 date-control restriction and Trend period
+independence in Desktop. Finance Voluntary Turnover Rolling 12 for January 2023
+matched the HR source at 12.6% in both the snapshot card and chart point.
+
 ## Next session
 
-Perform Desktop acceptance checks for Scores and Trend, including HR and AYT
-source comparisons, slicer and blank-result scenarios, Trend interactions, and
-representative Target and Leading Goal checks at Business Unit, Platform and
-Full Business scope. Confirm whether the 2027 starter targets are approved for
-production.
+The user will publish the report, then check it using an intended viewer's
+access to the live report, composite model and both source models before wider
+sharing (BL-013).

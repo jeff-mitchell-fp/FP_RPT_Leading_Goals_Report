@@ -4,10 +4,10 @@
   "position": {
     "x": 940.14319809069218,
     "y": 209.2601431980907,
-    "z": 21004,
+    "z": 9000,
     "height": 150,
     "width": 340,
-    "tabOrder": 21004
+    "tabOrder": 9000
   },
   "visual": {
     "visualType": "slicer",
@@ -60,24 +60,6 @@
       "filterChanges": true
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "809dfbd491410972d1ae",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_AYT_BusinessUnit"
-              }
-            },
-            "Property": "Platform"
-          }
-        },
-        "type": "Categorical"
-      }
-    ]
   },
   "isHidden": true
 }

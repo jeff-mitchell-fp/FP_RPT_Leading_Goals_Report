@@ -7,7 +7,7 @@
     "z": 12000,
     "height": 103.86117136659436,
     "width": 220.21691973969632,
-    "tabOrder": 7000
+    "tabOrder": 5000
   },
   "visual": {
     "visualType": "cardVisual",
@@ -74,23 +74,5 @@
       ]
     },
     "drillFilterOtherVisuals": true
-  },
-  "filterConfig": {
-    "filters": [
-      {
-        "name": "29f231eec19ce8407be7",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_LG_Measures"
-              }
-            },
-            "Property": "Score"
-          }
-        },
-        "type": "Advanced"
-      }
-    ]
   }
 }

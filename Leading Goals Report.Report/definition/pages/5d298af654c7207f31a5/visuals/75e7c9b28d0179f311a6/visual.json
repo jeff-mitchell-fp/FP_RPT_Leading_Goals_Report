@@ -4,10 +4,10 @@
   "position": {
     "x": 30.102249488752555,
     "y": 550.34764826175876,
-    "z": 21010,
+    "z": 12000,
     "height": 75.255623721881392,
     "width": 719.83640081799592,
-    "tabOrder": 21010
+    "tabOrder": 12000
   },
   "visual": {
     "visualType": "tableEx",
@@ -156,34 +156,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "0e84d58044d3091ca5fd",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_AYT_Item"
-              }
-            },
-            "Property": "ItemLabel"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "6012b17dee4ecfdb8e32",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_AYT_Measures"
-              }
-            },
-            "Property": "Affirmative Response %"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   },

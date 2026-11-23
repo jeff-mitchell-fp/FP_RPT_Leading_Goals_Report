@@ -4,10 +4,10 @@
   "position": {
     "x": 670,
     "y": 101.31401965856182,
-    "z": 4000,
+    "z": 3000,
     "height": 78,
     "width": 180.37735849056605,
-    "tabOrder": 2000
+    "tabOrder": 1000
   },
   "visual": {
     "visualType": "slicer",
@@ -111,7 +111,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'October 2026'"
+                                "Value": "'January 2023'"
                               }
                             }
                           ]
@@ -171,20 +171,6 @@
   "filterConfig": {
     "filters": [
       {
-        "name": "48f276d4cbdbe36ae22b",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_HR_Calendar"
-              }
-            },
-            "Property": "CalMonthYear"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
         "name": "17393c6de92bd37699d5",
         "field": {
           "Column": {
@@ -231,6 +217,69 @@
                       }
                     ]
                   ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "8509aef26e49ec31cba9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_HR_Calendar"
+              }
+            },
+            "Property": "CalMonthYear"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "dbd6a00dccdbdc26b42d",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "dim_HR_Calendar"
+              }
+            },
+            "Property": "CalYear"
+          }
+        },
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dim_HR_Calendar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "CalYear"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "2023L"
+                    }
+                  }
                 }
               }
             }

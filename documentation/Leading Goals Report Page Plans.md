@@ -64,6 +64,10 @@ The user confirmed in Power BI Desktop that both entries are absent on Scores
 and Trend. This limits the selectable Business Unit values. It does not redefine
 the unfiltered Full Business or Platform calculation scope.
 
+The earliest selectable Reporting Month is January 2023 on both pages. The user
+applied a `CalYear >= 2023` visual filter in Desktop while retaining the
+actuals-only restriction and confirmed the date controls' lower bound.
+
 Clearing both organisation slicers is intended to return Full Business. Target
 and Leading Goal resolve organisation scope in this order: explicitly selected
 Business Unit, selected Platform, then `FULL_BUSINESS` when neither is filtered.
@@ -120,8 +124,10 @@ page requirements.
 - All ten Target and Leading Goal pairs for Customer Service NZ in October 2026
   matched the Parquet source.
 - Report-definition matrix bindings and filters were inspected on 24 November 2026.
-- Current Score values have not been independently reconciled to both source
-  reports across all acceptance scenarios.
+- The user confirmed representative Scores comparisons and subsequently
+  confirmed the remaining Desktop checks. AYT Average Score is not available at
+  BU level in the AYT report; the method or disposition for its subsequent
+  confirmation was not specified.
 
 ## Trend page
 
@@ -170,6 +176,10 @@ Target and Leading Goal are evaluated for each axis month's calendar year.
 Months outside the available annual target data can display Score without a
 Target or Leading Goal.
 
+The earliest selectable Chart Date Range month is January 2023, with no upper
+bound based on target availability. The user applied a `CalYear >= 2023` visual
+filter in Desktop; underlying source history is retained.
+
 ### Evidence and limits
 
 - The user supplied a Desktop screenshot showing Score, Target and Leading Goal
@@ -180,25 +190,18 @@ Target or Leading Goal.
   selection's annual Target transitions only.
 - Report-definition bindings, visual filters and explicit interactions were inspected on
   24 November 2026.
-- Switching between representative HR and AYT measures while preserving date
-  and organisation selections remains to be confirmed in Desktop.
-- Other Trend values, annual line changes and blank-month behaviour remain to
-  be reconciled against the source reports and annual target source.
+- The user confirmed in Desktop that Reporting Month and Chart Date Range remain
+  independent, and switching representative HR and AYT measures preserves the
+  selected Business Unit and dates after applying the lower bound.
+- Finance Voluntary Turnover Rolling 12 for January 2023 matched the HR source
+  at 12.6% in both the Reporting Month Score card and chart point.
+- The user subsequently confirmed the remaining Trend source comparisons,
+  annual-line and interaction checks without providing case-level details.
 
 ## Validation still required
 
-The following acceptance evidence remains open unless recorded elsewhere:
-
-- One reporting month and one Business Unit present in both source models.
-- Platform only, Platform plus Business Unit, clearing Business Unit and
-  switching Platform.
-- Full Business with both organisation slicers clear.
-- A Business Unit or reporting month without an applicable AYT result.
-- Reporting Month force-selection and reset behaviour.
-- Trend Measure switching across HR and AYT metrics while retaining Chart Date
-  Range, Platform and Business Unit selections.
-- Trend values and Target/Leading Goal lines at representative months,
-  including a calendar-year boundary.
-- Published report access using an intended viewer account with access to the
-  composite model and both source models.
+The user confirmed the remaining Desktop acceptance checks. Detailed selections
+and results were not supplied for each subsequently confirmed scenario.
+Publication and the intended-viewer access and result check remain outstanding
+(BL-013).
 

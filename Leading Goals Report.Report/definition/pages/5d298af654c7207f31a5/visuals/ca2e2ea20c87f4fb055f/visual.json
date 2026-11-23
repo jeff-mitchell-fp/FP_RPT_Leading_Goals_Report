@@ -4,10 +4,10 @@
   "position": {
     "x": 30,
     "y": 185,
-    "z": 21011,
+    "z": 13000,
     "height": 510,
     "width": 1220,
-    "tabOrder": 21011
+    "tabOrder": 13000
   },
   "visual": {
     "visualType": "pivotTable",
@@ -600,90 +600,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "90bef6f5528dbd1e7cd0",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Leading Goals Metric Catalog"
-              }
-            },
-            "Property": "SharedImperative"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "d10a52cb7a891322c796",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Leading Goals Metric Catalog"
-              }
-            },
-            "Property": "GoalStatement"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "0a2905b2a75748e8fe93",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "Leading Goals Metric Catalog"
-              }
-            },
-            "Property": "DisplayName"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "056831a1992b0bbde4f4",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_LG_Measures"
-              }
-            },
-            "Property": "Score"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "a4eb2597b4d795987000",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_LG_Measures"
-              }
-            },
-            "Property": "Target"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "3853975d9bf49e901319",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_LG_Measures"
-              }
-            },
-            "Property": "Leading Goal"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

@@ -4,10 +4,10 @@
   "position": {
     "x": 939.3893700577122,
     "y": 322.93615119289575,
-    "z": 21005,
+    "z": 10000,
     "height": 150,
     "width": 340,
-    "tabOrder": 21005
+    "tabOrder": 10000
   },
   "visual": {
     "visualType": "slicer",
@@ -103,7 +103,7 @@
                           [
                             {
                               "Literal": {
-                                "Value": "'October 2026'"
+                                "Value": "'January 2023'"
                               }
                             }
                           ]
@@ -195,18 +195,53 @@
         "howCreated": "User"
       },
       {
-        "name": "7797a49ae1674d63a3c8",
+        "name": "dbd6a00dccdbdc26b42d",
         "field": {
           "Column": {
             "Expression": {
               "SourceRef": {
-                "Entity": "dim_AYT_Calendar"
+                "Entity": "dim_HR_Calendar"
               }
             },
-            "Property": "CalMonthYear"
+            "Property": "CalYear"
           }
         },
-        "type": "Categorical"
+        "type": "Advanced",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "dim_HR_Calendar",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Comparison": {
+                  "ComparisonKind": 2,
+                  "Left": {
+                    "Column": {
+                      "Expression": {
+                        "SourceRef": {
+                          "Source": "d"
+                        }
+                      },
+                      "Property": "CalYear"
+                    }
+                  },
+                  "Right": {
+                    "Literal": {
+                      "Value": "2023L"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
       }
     ]
   },

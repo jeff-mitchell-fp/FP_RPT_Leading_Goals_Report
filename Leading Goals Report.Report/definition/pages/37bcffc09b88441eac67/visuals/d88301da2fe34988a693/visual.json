@@ -7,7 +7,7 @@
     "z": 13000,
     "height": 383,
     "width": 1220,
-    "tabOrder": 8000
+    "tabOrder": 6000
   },
   "visual": {
     "visualType": "lineChart",
@@ -397,62 +397,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "b2c3fbd14e4e65fd5b66",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_HR_Calendar"
-              }
-            },
-            "Property": "CalMonthYearShort"
-          }
-        },
-        "type": "Categorical"
-      },
-      {
-        "name": "94c235556d2408506516",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_LG_Measures"
-              }
-            },
-            "Property": "Trend Score"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "f168b8112c86ac776aa6",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_LG_Measures"
-              }
-            },
-            "Property": "Leading Goal"
-          }
-        },
-        "type": "Advanced"
-      },
-      {
-        "name": "0f4885ef0c9d7f0cf46d",
-        "field": {
-          "Measure": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "_LG_Measures"
-              }
-            },
-            "Property": "Target"
-          }
-        },
-        "type": "Advanced"
       }
     ]
   }

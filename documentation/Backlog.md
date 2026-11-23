@@ -15,17 +15,9 @@ the next available ID is `BL-018`. Never reuse an issued ID.
 
 | ID | Priority | Status | Item | Dependencies | Evidence or exit condition |
 |---|---|---|---|---|---|
-| BL-003 | P0 | Ready for validation | Validate the implemented HR Reporting Month, Business Unit and Platform slicers on Scores and Trend. The Business Unit slicers exclude both Technologies entries. | BL-002 | Visible slicers have the intended fields, actuals restriction, exclusions and selection behaviour in all acceptance scenarios. |
-| BL-004 | P0 | Ready for validation | Validate the three hidden AYT counterpart slicers, sync groups and interactions on both pages. | BL-003 | Hidden counterparts filter the intended AYT results and no stale or unrestricted AYT context remains. |
-| BL-005 | P0 | Ready for validation | Validate the Scores matrix for the active catalog using `Score`, `Target` and `Leading Goal`, including required source filters. | BL-002, BL-004 | Representative HR and AYT rows match their source reports and the matrix follows the approved catalog. |
-| BL-007 | P0 | Not started | Run Desktop acceptance checks for one-month and shared-Business-Unit context, including month changes. | BL-005 | Representative Scores and Trend results match their source reports for the tested context. |
-| BL-008 | P0 | Not started | Run acceptance checks for Platform, Platform plus Business Unit, clearing both organisational slicers and Full Business results. | BL-004, BL-005 | Filter choices narrow and clear as intended, and representative page results match source behaviour. |
-| BL-009 | P0 | Not started | Run acceptance checks for an HR-only Business Unit or a Business Unit without AYT data, and for a month without an applicable survey. | BL-004, BL-005 | HR remains populated where available and AYT returns blank where expected. |
-| BL-010 | P0 | Not started | Verify the Reporting Month slicer cannot be cleared or multi-selected and confirm any reset action leaves one month selected. | BL-003, BL-004 | One reporting month remains selected and both source contexts use it. |
 | BL-012 | P1 | Not started | If label-based organisation syncing fails, implement and validate key-based wrappers using `BusinessUnitCode` and `TREATAS`, while retaining the Trend page's month transfer. | BL-007, BL-008, BL-009 | Wrapped measures pass repeated acceptance checks. |
 | BL-013 | P0 | Not started | After publication and before wider sharing, the user will check the live report with an intended viewer's access to the composite model and both source models. | BL-006, BL-007, BL-008, BL-009, BL-010 | Viewer can access the report and sees the validated results. |
 | BL-014 | P1 | Not started | Parked until feedback on the current report: add a Progression page with independent Base Month and Reporting Month selections. Show both values and the change for each reported figure under the same Business Unit and Platform filters. | BL-006 | Verify each endpoint against its source, including the AYT survey wave applicable to each month. Change equals Reporting Month minus Base Month. Percentage measures show change in percentage points. |
-| BL-015 | P1 | Ready for validation | Validate the Trend page with its single-select Measure dropdown, independent Chart Date Range, Reporting Month Score card, and Score, Target and Leading Goal series. | BL-006 | Representative HR and AYT measures match their sources; Measure switching preserves date and organisation selections; Reporting Month and Chart Date Range remain independent; annual lines behave correctly across years. |
 
 ## Completed
 
@@ -33,8 +25,16 @@ the next available ID is `BL-018`. Never reuse an issued ID.
 |---|---|
 | BL-001 | Both published source models were selected in Power BI Desktop and returned results in the prototype. |
 | BL-002 | The saved Leading Goals composite model contains DirectQuery connections to both `HR_Metrics` and `AYT_Metrics`. |
-| BL-006 | The final two-page presentation is recorded in Leading Goals Report Page Plans. Scores uses the active catalog matrix; Trend uses a single Measure dropdown and plots Score, Target and Leading Goal. Report-definition inspection and user screenshots confirm the layout. Numerical and interaction acceptance remains under BL-003–005 and BL-015. |
+| BL-003 | The user confirmed Desktop slicer acceptance, including the January 2023 lower bound and Technologies exclusions. |
+| BL-004 | The user confirmed remaining sync and blank-result checks; switching to eCommerce cleared the previous AYT result. |
+| BL-005 | The user confirmed Scores comparisons and remaining checks. BU-level Average Score is unavailable in the AYT report; the method or disposition for its subsequent confirmation was not specified. |
+| BL-006 | The final two-page presentation is recorded in Leading Goals Report Page Plans. Scores uses the active catalog matrix; Trend uses a single Measure dropdown and plots Score, Target and Leading Goal. Report-definition inspection and user screenshots confirm the layout. |
+| BL-007 | Customer Service NZ results matched for October and September 2026; the user confirmed remaining shared-BU and month checks. |
+| BL-008 | The user confirmed matching results for Australia ME, Customer Service AU and the remaining Platform and Full Business scenarios; BU choices narrowed correctly. |
+| BL-009 | The user confirmed remaining blank-result and source checks; switching from a populated AYT BU to eCommerce cleared AYT values. |
+| BL-010 | The user confirmed the remaining Reporting Month selection and reset checks. |
 | BL-011 | The report uses an actuals-only HR Month list. The saved Month slicer applies `dim_HR_Calendar[HasActuals] = TRUE`. This decision was made independently of final metric selection. |
+| BL-015 | The user confirmed Trend interactions and remaining source and annual-line checks. Finance January 2023 Voluntary Turnover Rolling 12 matched the source at 12.6% in the card and chart. |
 | BL-016 | The Leading Goals matrix displays Target and Leading Goal values. The user confirmed the Business Unit, Platform and Full Business lookups in Desktop. All ten Target and Leading Goal pairs for Customer Service NZ in October 2026 matched the Parquet source. |
 | BL-017 | The starter annual targets and Leading Goals Parquet file was generated, uploaded to SharePoint and refreshed into the model. Read-back checks verified 1,080 unique rows, with 540 each for 2026 and 2027. |
 

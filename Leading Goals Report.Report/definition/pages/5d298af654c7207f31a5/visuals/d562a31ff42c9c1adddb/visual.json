@@ -4,10 +4,10 @@
   "position": {
     "x": 940.1830910070006,
     "y": 140.61389337641359,
-    "z": 21003,
+    "z": 8000,
     "height": 150,
     "width": 340,
-    "tabOrder": 21003
+    "tabOrder": 8000
   },
   "visual": {
     "visualType": "slicer",
@@ -50,7 +50,54 @@
       ],
       "general": [
         {
-          "properties": {}
+          "properties": {
+            "filter": {
+              "filter": {
+                "Version": 2,
+                "From": [
+                  {
+                    "Name": "d",
+                    "Entity": "dim_HR_BusinessUnit",
+                    "Type": 0
+                  },
+                  {
+                    "Name": "d1",
+                    "Entity": "dim_AYT_BusinessUnit",
+                    "Type": 0
+                  }
+                ],
+                "Where": [
+                  {
+                    "Condition": {
+                      "In": {
+                        "Expressions": [
+                          {
+                            "Column": {
+                              "Expression": {
+                                "SourceRef": {
+                                  "Source": "d1"
+                                }
+                              },
+                              "Property": "BusinessUnitName"
+                            }
+                          }
+                        ],
+                        "Values": [
+                          [
+                            {
+                              "Literal": {
+                                "Value": "'Finance'"
+                              }
+                            }
+                          ]
+                        ]
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
         }
       ]
     },

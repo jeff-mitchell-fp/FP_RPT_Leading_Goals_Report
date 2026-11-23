@@ -7,7 +7,7 @@
     "z": 9000,
     "height": 77.81155015197568,
     "width": 234.40729483282675,
-    "tabOrder": 4000
+    "tabOrder": 3000
   },
   "visual": {
     "visualType": "slicer",
@@ -230,20 +230,6 @@
           ]
         },
         "howCreated": "User"
-      },
-      {
-        "name": "19611b6e3a5fa6487a4d",
-        "field": {
-          "Column": {
-            "Expression": {
-              "SourceRef": {
-                "Entity": "dim_HR_Calendar"
-              }
-            },
-            "Property": "MonthStartDate"
-          }
-        },
-        "type": "Categorical"
       }
     ]
   }
