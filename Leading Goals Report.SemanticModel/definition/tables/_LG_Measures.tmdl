@@ -119,6 +119,27 @@ table _LG_Measures
 		formatString: 0.0%;-0.0%;0.0%
 		lineageTag: d268bfb7-4f44-49db-9df4-c2576d7f2508
 
+	/// Monthly catalog score using the HR axis month to resolve the applicable AYT survey.
+	measure 'Trend Score' =
+			VAR MetricKey =
+			    SELECTEDVALUE ( 'Leading Goals Metric Catalog'[MetricKey] )
+			VAR MonthCode =
+			    SELECTEDVALUE ( dim_HR_Calendar[MonthCode] )
+			RETURN
+			    IF (
+			        NOT ISBLANK ( MonthCode ),
+			        IF (
+			            MetricKey IN { "HC_F", "HC_M", "VOL_R12" },
+			            [Score],
+			            CALCULATE (
+			                [Score],
+			                TREATAS ( { MonthCode }, dim_AYT_Calendar[MonthCode] )
+			            )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 61bb029e-e50e-45ad-8ca8-9d21f59d2927
+
 	column Column1
 		dataType: string
 		lineageTag: 0c518632-5e42-46e4-958e-ea8705670285

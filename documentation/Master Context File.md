@@ -2,29 +2,22 @@
 
 ## Purpose
 
-This file is the working context for AI-assisted development of the Leading Goals Power BI report. It records the agreed scope, authoritative references, current decisions, open questions and validation state. Update it when a decision changes the project direction or when validation produces evidence that future work needs.
+This file summarises the report-wide scope, source behaviour, key decisions and unresolved project questions for the Leading Goals Report.
+
+Current page specifications, visual bindings, interactions and scoped report validation are owned by [Leading Goals Report Page Plans](Leading%20Goals%20Report%20Page%20Plans.md). The [Backlog](Backlog.md) owns approved open work and completion evidence. The build brief remains the initial requirements source.
 
 ## Current objective
 
-Build a new single-page Power BI Desktop report that combines workforce metrics from `HR_Metrics` with Ask Your Team metrics from `AYT_Metrics` for the People & Capability workspace.
+Build and validate a two-page Power BI Desktop report that combines workforce metrics from `HR_Metrics` with Ask Your Team metrics from `AYT_Metrics` for the People & Capability workspace.
 
 ## Scope
 
-In scope:
+The current report comprises:
 
-- A composite model using `HR_Metrics` as the starting model and `AYT_Metrics` added through Power BI semantic models.
-- Three visible slicers: Reporting Month, Business Unit and Platform.
-- Synced AYT slicer counterparts that are tested and then hidden.
-- Reuse of published measures and the applicable metric-specific visual filters from the source reports.
-- A prototype with at least HR `Headcount` and AYT `Participation Rate`.
-- Desktop acceptance checks covering month, Business Unit, Platform, Full Business, missing AYT data and months without an applicable survey.
-- A published-viewer access check before distribution.
+- **Scores**, showing the selected reporting month's Score, Target and Leading Goal for the active metric catalog.
+- **Trend**, showing monthly Score, Target and Leading Goal for one selected catalog measure over an independent Chart Date Range.
 
-Out of scope:
-
-- AYT Overall Score.
-- Final metric selection and final page layout until the source reports have been compared.
-- Key-based DAX wrappers unless synced slicer testing shows that label-based propagation is insufficient.
+Both pages use visible Reporting Month, Business Unit and Platform slicers with hidden synced AYT counterparts. Reuse published source measures and their applicable visual filters. AYT Overall Score remains out of scope.
 
 ## Source and period behaviour
 
@@ -34,35 +27,19 @@ Connect to `HR_Metrics` and `AYT_Metrics` in the **People & Capability** workspa
 
 HR uses the selected month for workforce measures. AYT uses the selected month to resolve the applicable survey wave through its existing month-to-survey mapping. Several months may show the same survey result. AYT returns blank when no survey applies. The AYT section should show the survey name or wave where needed to make the observation period clear.
 
-The saved models align on integer `MonthCode` (`YYYYMM`) and `BusinessUnitCode`. Platform is an attribute of Business Unit in both models.
+The saved models align on integer `MonthCode` (`YYYYMM`) and `BusinessUnitCode`. Platform is an attribute of Business Unit in both models. Label-based synced slicers remain the organisation-filtering implementation. The Trend Score measure uses `MonthCode` with `TREATAS` only to pass each HR chart-axis month to the AYT calendar.
 
-## Required slicers
+Targets and Leading Goals are annual values selected by metric, calendar year and organisation scope. Organisation scope resolves in this order: explicitly selected Business Unit, selected Platform, then Full Business.
 
-| Visible slicer | Field in each model | Initial configuration |
-|---|---|---|
-| Reporting Month | `dim_Calendar[CalMonthYear]` | HR visible slicer uses List, Single select and Force selection. Start with a known reporting month. Confirm whether HR `HasActuals = TRUE` is required. |
-| Business Unit | `dim_BusinessUnit[BusinessUnitName]` | Clearable to support Full Business. Test narrowing after Platform selection. |
-| Platform | `dim_BusinessUnit[Platform]` | Clearable. Test interactions with an existing Business Unit selection. |
+## Page specifications
 
-Each visible slicer has an AYT counterpart. Each pair has its own Sync slicers group, passes filter changes to the other slicer, remains bound to its own model field, and is tested before the AYT counterpart is hidden.
+Page layout, slicer configuration, measure bindings, filter interactions and page-level validation evidence are maintained in [Leading Goals Report Page Plans](Leading%20Goals%20Report%20Page%20Plans.md).
 
-## Initial visual direction
-
-Start with two cards:
-
-- HR `Headcount`
-- AYT `Participation Rate`
-
-Carry over source visual filters. Apply AYT `IncludeAYT = TRUE` to applicable result visuals and preserve any required question, category or response-option filters from the original AYT visual.
-
-Compare the prototype with both source reports before adding more visuals. Final metric set, layout and explanatory labels remain open until that comparison is complete.
-
-## Contingency for slicer mismatch
-
-If synced slicers fail because labels do not match or a selection silently clears or persists in AYT, use report-local wrapper measures. Pass the selected HR `MonthCode` to the AYT calendar with `TREATAS`. When Business Unit or Platform is selected, pass the effective HR `BusinessUnitCode` values to the AYT Business Unit dimension. When both organisation slicers are clear, omit the Business Unit filter so the AYT measure keeps its Full Business scope. Disable corresponding hidden-slicer interactions on wrapped visuals so stale label filters do not intersect the key filters. Repeat all acceptance checks for wrapped measures.
+If label-based organisation syncing fails an acceptance scenario, assess key-based wrappers using `BusinessUnitCode`. Keep Full Business unrestricted and disable intersecting stale hidden-slicer filters before validating any wrapper implementation.
 
 ## Authoritative references
 
+- [Leading Goals Report Page Plans](Leading%20Goals%20Report%20Page%20Plans.md)
 - [HR Metrics and AYT Report Build Brief](HR%20Metrics%20and%20AYT%20Report%20Build%20Brief.md)
 - `RPT_HR_BU_Report/documentation/BU Report Page Plans.md`
 - `SM_AYT_Model/documentation/AYT Model Design Document.md` section 2.6
@@ -75,16 +52,33 @@ The cross-repository references are paths in named source repositories. They are
 
 | Topic | Status | Decision or next evidence |
 |---|---|---|
-| Report page count | Agreed initial scope | One page. |
+| Report page count | Agreed | Two pages: Scores and Trend. |
 | AYT Overall Score | Agreed | Excluded. |
-| Initial prototype | Agreed | Headcount and Participation Rate cards. |
-| Final metric set | Open | Compare source reports, then record the selected measures and rationale. |
-| Final layout | Open | Select after prototype comparison. |
-| HR actuals-only month list | Open | Confirm whether the page follows the BU report's `HasActuals = TRUE` month list. |
-| Cross-model slicer propagation | Open | Test label-based synced slicers first. Use key-based wrappers only if required. |
-| Known reporting month | Open | Choose and record a month available in both source contexts before Desktop testing. |
-| Published viewer access | Open | Check intended viewer access to the composite model and both source models before distribution. |
+| Metric presentation | Agreed | Scores uses the active catalog matrix. Trend uses one single-select Measure dropdown. |
+| Trend comparison | Agreed | Plot Score, Target and Leading Goal. Reporting Month controls the snapshot; Chart Date Range controls the chart. |
+| HR actuals-only months | Agreed | Reporting Month and Chart Date Range apply `HasActuals = TRUE`. |
+| Technologies scope | Agreed | Exclude Fisher & Paykel Technologies and Fisher & Paykel Technologies - China from the Business Unit slicers on both pages. This does not redefine Full Business calculations. |
+| Cross-model slicer propagation | Built, validation open | Hidden synced slicers are present. Complete the remaining acceptance scenarios before deciding whether organisation key wrappers are required. |
+| Published viewer access | Open | The user will check intended viewer access to the live report, composite model and both source models after publication and before wider sharing. |
+| Progression page | Parked | Reconsider after feedback on the current two-page report; tracked as BL-014. |
+| Annual target maintenance | User-managed | The user will separately write a script that generates Parquet from the manually maintained CSV source. |
+| 2027 starter targets | Open | Confirm whether the starter targets are approved for production. |
 
 ## Validation state
 
-No Power BI Desktop or published-viewer validation has been performed at initial setup. Acceptance evidence should be recorded against the backlog items and reflected here when it changes scope, design or implementation.
+The user confirmed the Target and Leading Goal lookups for Business Unit, Platform and Full Business. All ten Customer Service NZ pairs for October 2026 matched the Parquet source. The user also confirmed that the two Technologies entries are absent from the Business Unit slicers on both pages.
+
+Report-definition inspection confirms the two pages, current bindings, filters, page headers and Trend interactions. Remaining Desktop and published-viewer checks are listed in Page Plans and the backlog. No published-viewer validation has been recorded.
+
+The annual seed and generated Parquet cover 2023–2027; the user reported
+refreshing the model. The user confirmed one Finance Purpose, Values & Strategy
+Trend annual Target transition against the CSV. Page Plans records the
+specific evidence and remaining validation.
+
+## Next session
+
+Perform Desktop acceptance checks for Scores and Trend, including HR and AYT
+source comparisons, slicer and blank-result scenarios, Trend interactions, and
+representative Target and Leading Goal checks at Business Unit, Platform and
+Full Business scope. Confirm whether the 2027 starter targets are approved for
+production.

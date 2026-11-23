@@ -62,6 +62,8 @@ Thumbs.db
 *.xlsb
 *.parquet
 *.json.data
+*.pptx
+*.ppt
 
 # -----------------------------------------------
 # Data source folders (adjust names to match yours)

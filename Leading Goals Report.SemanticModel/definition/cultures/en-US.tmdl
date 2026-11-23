@@ -169,6 +169,48 @@ cultureInfo en-US
 			          }
 			        }
 			      ]
+			    },
+			    "table_lg_measures.trend_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_LG_Measures",
+			          "ConceptualProperty": "Trend Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Score": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "dim_hr_calendar.calmonthyearshort": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_HR_Calendar",
+			          "ConceptualProperty": "CalMonthYearShort"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Month": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
 			    }
 			  }
 			}

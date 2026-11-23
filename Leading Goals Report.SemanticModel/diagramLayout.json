@@ -118,11 +118,40 @@
           "zIndex": 0
         },
         {
-          "location": {},
+          "location": {
+            "x": 3701.1561660176048,
+            "y": 251.99528603144756
+          },
           "nodeIndex": "Leading Goals Metrics",
           "nodeLineageTag": "f76b1197-ae32-4f16-86bc-ec3746d3bfc1",
           "size": {
             "height": 176,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3467.1561660176048,
+            "y": 177.99528603144756
+          },
+          "nodeIndex": "Annual Targets and Goals",
+          "nodeLineageTag": "35866b06-61f7-4560-bdd4-ff315d544d6d",
+          "size": {
+            "height": 224,
+            "width": 234
+          },
+          "zIndex": 0
+        },
+        {
+          "location": {
+            "x": 3183.1561660176048,
+            "y": 139.99528603144756
+          },
+          "nodeIndex": "Leading Goals Metric Catalog",
+          "nodeLineageTag": "2b011c12-8c0d-4a44-89d9-f582747998fd",
+          "size": {
+            "height": 300,
             "width": 234
           },
           "zIndex": 0

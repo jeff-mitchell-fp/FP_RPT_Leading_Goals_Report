@@ -30,7 +30,7 @@ For a given `ImperativeKey`, the label, order, and goal statement must be consis
 
 ## 2. annual_targets_and_goals.parquet
 
-One row per **MetricKey × GoalYear × ScopeType × ScopeKey**. The [annual CSV example](../external_documentation/annual_targets_and_goals_example.csv) illustrates the output shape and contains sample values. This dataset supports `RPT_Leading_Goals_Report` backlog items [LG-016 and LG-017](Backlog.md).
+One row per **MetricKey × GoalYear × ScopeType × ScopeKey**. The [annual CSV example](../external_documentation/annual_targets_and_goals_example.csv) illustrates the output shape and contains sample values. This dataset supports `RPT_Leading_Goals_Report` backlog items [BL-016 and BL-017](Backlog.md).
 
 | Column | Parquet type | Required | Meaning |
 |---|---|---|---|
