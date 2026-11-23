@@ -1,0 +1,216 @@
+/// Monthly reporting calendar covering January 2021 through December 2050. Filters survey applicability through Bridge_Survey_Month; engagement facts remain at survey grain. Current-date flags are evaluated during model recalculation and do not update with report selections.
+table dim_AYT_Calendar
+	lineageTag: 60285283-1c84-4d04-8267-2d640071692f
+	sourceLineageTag: 551a724d-18f5-412a-b7d3-8f839b4bfac2
+
+	/// First day of the reporting month. Use for explicit month-based calculations.
+	column MonthStartDate
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		displayFolder: Attributes
+		lineageTag: 06d0e8b5-539a-454c-8737-0208b09f0791
+		sourceLineageTag: 5e4a24da-152a-453c-acdb-8c066a502db6
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MonthStartDate
+
+		annotation SummarizationSetBy = User
+
+	/// Reporting month as integer YYYYMM. Relationship key to Bridge_Survey_Month and sort key for month-year labels.
+	column MonthCode
+		dataType: int64
+		isHidden
+		isNullable: false
+		formatString: 0
+		displayFolder: Sort Columns
+		lineageTag: 39c1d6d3-6210-4b52-bd00-5e0d7f442860
+		sourceLineageTag: ce0b2b06-95f0-49a2-a502-47d88ee1cecf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MonthCode
+
+		annotation SummarizationSetBy = User
+
+	/// Calendar year of the reporting month.
+	column CalYear
+		dataType: int64
+		formatString: 0
+		displayFolder: Attributes
+		lineageTag: 18e6c0e7-cedc-4eee-8d7d-187c78316b11
+		sourceLineageTag: 1e3d92e7-65bf-4a61-a7ef-9d785b63f5ac
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalYear
+
+		annotation SummarizationSetBy = User
+
+	/// Calendar quarter number, 1–4.
+	column CalQuarterNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Attributes
+		lineageTag: c269583f-774b-4ee9-aefe-95af4c7c38ca
+		sourceLineageTag: fc0b6ec6-cdc0-4dbd-972f-8be4d7102730
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalQuarterNum
+
+		annotation SummarizationSetBy = User
+
+	/// Calendar quarter and year. Sorted by CalQuarterSortKey.
+	column CalQuarterLabel
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 0861a12c-47b4-421a-bb92-74698aecc738
+		sourceLineageTag: 1515533b-8fbe-4744-be8e-71d2ac1b7b33
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalQuarterLabel
+		sortByColumn: CalQuarterSortKey
+
+		annotation SummarizationSetBy = User
+
+	/// Calendar year multiplied by 10 plus quarter number.
+	column CalQuarterSortKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Sort Columns
+		lineageTag: 1568647c-6ef3-4f1a-b46f-7e6262b1fcc2
+		sourceLineageTag: 494a769d-f4ca-480d-a9d2-abe40bd805c2
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalQuarterSortKey
+
+		annotation SummarizationSetBy = User
+
+	/// Calendar month number, 1–12. Sort key for month names.
+	column CalMonthNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Sort Columns
+		lineageTag: 9bcf77a7-f9d4-44b9-a818-4cf5b0545a66
+		sourceLineageTag: 6d5da433-0c73-4e65-be77-933cac713900
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthNum
+
+		annotation SummarizationSetBy = User
+
+	/// Abbreviated month name. Use with year context; sorted by CalMonthNum.
+	column CalMonthShort
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 573ce900-a1e0-45c5-9dca-8f4f0728a33d
+		sourceLineageTag: 00c5ee86-e107-42fb-8d16-e722fb634c6b
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthShort
+		sortByColumn: CalMonthNum
+
+		annotation SummarizationSetBy = User
+
+	/// Full month name. Use with year context; sorted by CalMonthNum.
+	column CalMonthLong
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: dbcfdc28-7570-4b2a-b444-1bef75347992
+		sourceLineageTag: 09c6f16f-e055-4acc-825a-a40a5c2a6604
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthLong
+		sortByColumn: CalMonthNum
+
+		annotation SummarizationSetBy = User
+
+	/// Reporting month and year for slicers and labels. Sorted by MonthCode. Distinct from the source survey’s SurveyName.
+	column CalMonthYear
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 6bb0204e-f9e0-40bb-95d6-afc0de5fc3f9
+		sourceLineageTag: b6ac1903-f211-46e2-859b-05e45a9a0e9d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthYear
+		sortByColumn: MonthCode
+
+		annotation SummarizationSetBy = User
+
+	/// Abbreviated reporting month and year for trend axes. Sorted by MonthCode.
+	column CalMonthYearShort
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: d24979d1-f1af-4b3f-9e1e-fe9f676732a3
+		sourceLineageTag: e148e5c2-6dc9-4d94-8094-0174c6694fae
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthYearShort
+		sortByColumn: MonthCode
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for the month of model recalculation. Does not identify the latest survey month.
+	column IsCurrentMonth
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: 91120257-4333-4ee5-a0d8-48407e91124d
+		sourceLineageTag: a952659e-70b4-459d-9a28-56e190672a2f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsCurrentMonth
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for the year of model recalculation.
+	column IsCurrentYear
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: 690800c2-8859-475f-a4df-ed58a557ada8
+		sourceLineageTag: eb68c6fa-d5dd-4cab-888b-1f0eb11d6e50
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsCurrentYear
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for months after the month of model recalculation. Available for report filtering.
+	column IsFutureMonth
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: 9a1a8964-6057-4d15-a70e-85930674b1d6
+		sourceLineageTag: df413169-597d-46de-82d4-07ac402f1f7e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsFutureMonth
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for nonfuture reporting months whose applicable survey has engagement rows. Model-wide; does not guarantee data for a selected BU or question. Does not identify a new survey observation in every month.
+	column HasActuals
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: 3d367279-811f-41ca-9499-5bf0ffbbe2d6
+		sourceLineageTag: 7cfb3071-0209-4e9b-89a0-1389a4465128
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: HasActuals
+
+		annotation SummarizationSetBy = User
+
+	partition dim_AYT_Calendar = entity
+		mode: directQuery
+		source
+			entityName: dim_Calendar
+			expressionSource: 'DirectQuery to AS - AYT_Metrics'
+
+	changedProperty = Name
+

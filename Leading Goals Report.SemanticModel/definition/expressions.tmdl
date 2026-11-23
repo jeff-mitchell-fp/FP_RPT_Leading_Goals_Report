@@ -1,0 +1,136 @@
+expression 'DirectQuery to AS - HR_Metrics' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/People%20%26%20Capability", "HR_Metrics"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: 944de34e-920d-44c8-8ba7-843dfb567e02
+
+	annotation PBI_IncludeFutureArtifacts = True
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"b23a22ca-759c-4c8c-b47f-484a4ea3940c"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"0a55dc30-d175-433d-96a6-b4e0bf8db539"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"11f32f0e-f6a6-4c27-8d5a-f7b84c83459e"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"35600fce-bfc6-4313-bbc0-cdbe42744ace"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"39544b5c-8270-44e9-aad4-b11900000001"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"39544b5c-8270-44e9-aad4-b11900000005"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"1f97e95b-3f82-4559-abe1-0348a7268993"}},"objectType":"Table"}]
+
+expression 'DirectQuery to AS - AYT_Metrics' =
+		let
+		    Source = AnalysisServices.Database("powerbi://api.powerbi.com/v1.0/myorg/People%20%26%20Capability", "AYT_Metrics"),
+		    Cubes = Table.Combine(Source[Data]),
+		    Cube = Cubes{[Id="Model", Kind="Cube"]}[Data]
+		in
+		    Cube
+	lineageTag: 4ddffb09-221b-4c8c-a7ea-ae3735fe9a9f
+
+	annotation PBI_IncludeFutureArtifacts = True
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"29c5d07e-44e2-44c0-b7cc-6f457c20128d"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"7525b746-b2af-4f20-84f5-b2a2eb87c512"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"4fa29926-eaa8-4206-afb0-eb9361555a92"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"e5c47ece-0ece-4fe1-bf70-2b87b26c30a2"}},"objectType":"Table"}]
+
+expression stg_LeadingGoalsMetrics =
+		let
+		    Source = src_LeadingGoalsMetrics,
+		    Typed = Table.TransformColumnTypes(Source, {
+		        {"MetricKey", type text},
+		        {"DisplayName", type text},
+		        {"ImperativeKey", type text},
+		        {"SharedImperative", type text},
+		        {"ImperativeOrder", Int64.Type},
+		        {"GoalStatement", type text},
+		        {"MetricOrder", Int64.Type},
+		        {"Status", type text},
+		        {"ScoreType", type text},
+		        {"AYTItemCode", type text}
+		    })
+		in
+		    Typed
+	lineageTag: 42c39e00-4789-4904-9fa3-10e1af03c422
+	queryGroup: 'Staged Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression stg_AnnualTargetsAndGoals =
+		let
+		    Source = src_AnnualTargetsAndGoals,
+		    Typed = Table.TransformColumnTypes(Source, {
+		        {"MetricKey", type text},
+		        {"GoalYear", Int64.Type},
+		        {"ScopeType", type text},
+		        {"ScopeKey", type text},
+		        {"Target", type number},
+		        {"LeadingGoal", type number}
+		    })
+		in
+		    Typed
+	lineageTag: 809924b5-51f1-44cb-927c-8f6d4089b0e4
+	queryGroup: 'Staged Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression src_LeadingGoalsMetrics =
+		let
+		    Site = "https://fisherpaykel.sharepoint.com/sites/HRAnalytics",
+		    FileName = "leading_goals_metrics.parquet",
+		    FolderSuffix = "/03_Leading_Goals_Model/01_Source_Staged/Reference",
+		    Files = SharePoint.Files(Site, [ApiVersion = 15]),
+		    Candidates = Table.SelectRows(
+		        Files,
+		        each Comparer.OrdinalIgnoreCase([Name], FileName) = 0
+		    ),
+		    Matches = Table.SelectRows(
+		        Candidates,
+		        each Text.EndsWith(
+		            Text.TrimEnd(Text.Replace([Folder Path], "%20", " "), "/"),
+		            FolderSuffix,
+		            Comparer.OrdinalIgnoreCase
+		        )
+		    ),
+		    Content =
+		        if Table.RowCount(Matches) = 1 then
+		            Matches{0}[Content]
+		        else
+		            error "Expected exactly one matching file. Check the Candidates step.",
+		    Data = Parquet.Document(Content)
+		in
+		    Data
+	lineageTag: bbe33f41-b1d0-459b-94f1-72666fafed85
+	queryGroup: 'Source Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
+expression src_AnnualTargetsAndGoals =
+		let
+		    Site = "https://fisherpaykel.sharepoint.com/sites/HRAnalytics",
+		    FileName = "annual_targets_and_goals.parquet",
+		    FolderSuffix = "/03_Leading_Goals_Model/01_Source_Staged/Reference",
+		    Files = SharePoint.Files(Site, [ApiVersion = 15]),
+		    Candidates = Table.SelectRows(
+		        Files,
+		        each Comparer.OrdinalIgnoreCase([Name], FileName) = 0
+		    ),
+		    Matches = Table.SelectRows(
+		        Candidates,
+		        each Text.EndsWith(
+		            Text.TrimEnd(Text.Replace([Folder Path], "%20", " "), "/"),
+		            FolderSuffix,
+		            Comparer.OrdinalIgnoreCase
+		        )
+		    ),
+		    Content =
+		        if Table.RowCount(Matches) = 1 then
+		            Matches{0}[Content]
+		        else
+		            error "Expected exactly one matching file. Check the Candidates step.",
+		    Data = Parquet.Document(Content)
+		in
+		    Data
+	lineageTag: ad04d73e-88c5-48ae-a619-298dfc3b2c66
+	queryGroup: 'Source Queries'
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

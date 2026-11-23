@@ -1,0 +1,100 @@
+table 'Leading Goals Metric Catalog'
+	lineageTag: 2b011c12-8c0d-4a44-89d9-f582747998fd
+
+	column MetricKey
+		dataType: string
+		lineageTag: 370ffd6e-7b1f-4d02-8cd6-318c37aa2d73
+		summarizeBy: none
+		sourceColumn: MetricKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column DisplayName
+		dataType: string
+		lineageTag: 879462bf-c143-40ac-b5b8-7113af93cd3d
+		summarizeBy: none
+		sourceColumn: DisplayName
+		sortByColumn: MetricOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column ImperativeKey
+		dataType: string
+		lineageTag: 192b892e-3026-4035-874d-dfc03a2c031f
+		summarizeBy: none
+		sourceColumn: ImperativeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column SharedImperative
+		dataType: string
+		lineageTag: c7a80cd6-026a-47f9-9014-590b5043a2df
+		summarizeBy: none
+		sourceColumn: SharedImperative
+		sortByColumn: ImperativeOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column ImperativeOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: 08c05a06-9378-42ae-bbf1-6fc0ae589477
+		summarizeBy: none
+		sourceColumn: ImperativeOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column GoalStatement
+		dataType: string
+		lineageTag: de73b01b-102f-457c-8ef2-76e465ca48d4
+		summarizeBy: none
+		sourceColumn: GoalStatement
+
+		annotation SummarizationSetBy = Automatic
+
+	column MetricOrder
+		dataType: int64
+		formatString: 0
+		lineageTag: fe971def-a00c-4e31-b788-fc01a300e8af
+		summarizeBy: none
+		sourceColumn: MetricOrder
+
+		annotation SummarizationSetBy = Automatic
+
+	column Status
+		dataType: string
+		lineageTag: 95c29884-84cf-4cc4-b785-2b7c4752a306
+		summarizeBy: none
+		sourceColumn: Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScoreType
+		dataType: string
+		lineageTag: 9c3b6411-8c66-4fd4-9e96-663eb183f0ad
+		summarizeBy: none
+		sourceColumn: ScoreType
+
+		annotation SummarizationSetBy = Automatic
+
+	column AYTItemCode
+		dataType: string
+		lineageTag: deb95ebe-b0c0-4164-bd91-f3b9a729d898
+		summarizeBy: none
+		sourceColumn: AYTItemCode
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Leading Goals Metric Catalog' = m
+		mode: import
+		queryGroup: 'Production Queries'
+		source =
+				let
+				    Source = stg_LeadingGoalsMetrics
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,176 @@
+cultureInfo en-US
+
+	linguisticMetadata =
+			{
+			  "Version": "2.0.0",
+			  "Language": "en-US",
+			  "Entities": {
+			    "table_hr_measures.voluntary_turnover_rolling_12": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_HR_Measures",
+			          "ConceptualProperty": "Voluntary Turnover Rolling 12"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "table_ayt_measures.ayt_average_agreement_score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_LG_Measures",
+			          "ConceptualProperty": "AYT Average Agreement Score"
+			        }
+			      },
+			      "State": "Generated"
+			    },
+			    "dim_ayt_item.itemlabel": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "dim_AYT_Item",
+			          "ConceptualProperty": "ItemLabel"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Question": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "leading_goals_metric_catalog.sharedimperative": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Leading Goals Metric Catalog",
+			          "ConceptualProperty": "SharedImperative"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "People: Shared Imperative": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "leading_goals_metric_catalog.goalstatement": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Leading Goals Metric Catalog",
+			          "ConceptualProperty": "GoalStatement"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Goal Statement": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "leading_goals_metric_catalog.displayname": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "Leading Goals Metric Catalog",
+			          "ConceptualProperty": "DisplayName"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Measure": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_lg_measures.score": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_LG_Measures",
+			          "ConceptualProperty": "Score"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Current": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_lg_measures.target": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_LG_Measures",
+			          "ConceptualProperty": "Target"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Target": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    },
+			    "table_lg_measures.leading_goal": {
+			      "Definition": {
+			        "Binding": {
+			          "ConceptualEntity": "_LG_Measures",
+			          "ConceptualProperty": "Leading Goal"
+			        }
+			      },
+			      "State": "Generated",
+			      "Terms": [
+			        {
+			          "Leading Goal": {
+			            "State": "Suggested",
+			            "Source": {
+			              "Type": "External",
+			              "Agent": "PowerBI.VisualColumnRename"
+			            },
+			            "Weight": 0.9
+			          }
+			        }
+			      ]
+			    }
+			  }
+			}
+		contentType: json
+

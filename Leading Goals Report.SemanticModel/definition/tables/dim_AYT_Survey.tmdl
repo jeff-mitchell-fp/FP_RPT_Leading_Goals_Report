@@ -1,0 +1,80 @@
+/// One row per delivered employee engagement survey wave, with its reporting-month applicability window. Survey results persist across applicable months; they are not separate observations for each month. The latest survey has an open-ended window.
+table dim_AYT_Survey
+	lineageTag: 7d65b561-31b6-4f0b-ae79-300355c29147
+	sourceLineageTag: 7824921f-69d4-426e-9f71-e309e8593c58
+
+	/// Unique identifier for a delivered employee engagement survey wave. Relationship key linking survey results and survey-month mappings. Use to identify or select a survey wave; use the calendar dimension for reporting-month selection.
+	column SurveyCode
+		dataType: string
+		isNullable: false
+		displayFolder: Keys
+		lineageTag: 4e35188d-ce06-425a-8a27-9eb27faf56c4
+		sourceLineageTag: 4e9e3b48-7595-4b95-9f06-f1ea771ca0a7
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SurveyCode
+
+		annotation SummarizationSetBy = User
+
+	/// First day of the survey’s actual Start Date month. The survey’s results apply from this reporting month until superseded by the next accepted survey. This is an applicability date, not the exact survey start date or refresh date.
+	column ValidFromMonth
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		displayFolder: Attributes
+		lineageTag: 1d7b2d84-23fe-402b-99ca-c9e17bd7d6a5
+		sourceLineageTag: 3b34de21-b044-4565-bcaf-c4fad19b393e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ValidFromMonth
+
+		annotation SummarizationSetBy = User
+
+	/// First day of the last reporting month for which the survey applies, inclusive. Blank identifies the latest survey, which remains applicable until superseded. Months after this value use the next accepted survey.
+	column ValidToMonth
+		dataType: dateTime
+		isHidden
+		formatString: dd/mm/yyyy
+		displayFolder: Attributes
+		lineageTag: 50ceca22-f2b6-4aed-adc3-b6408646bfa9
+		sourceLineageTag: 00898e44-5671-469a-81ed-2d73bc318a4a
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ValidToMonth
+
+		annotation SummarizationSetBy = User
+
+	/// Display name of the survey wave, based on its actual Start Date month. Identifies the source survey rather than the reporting month.
+	column SurveyName
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 6a409ec4-489d-4a45-b6c7-94ed1a398296
+		sourceLineageTag: 9e5dc4c1-1d40-4f79-b290-dbb8e9864746
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SurveyName
+		sortByColumn: ValidFromMonth
+
+		annotation SummarizationSetBy = User
+
+	/// Abbreviated month and year of the source survey wave, derived from its applicability start month. Use for compact survey-history axes; use SurveyName for full labels.
+	column SurveyNameShort
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: c14ab713-7b57-474b-b6d6-f734d46f9b8e
+		sourceLineageTag: 459d3c7d-48e8-4cb3-872d-391aacdbfa57
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SurveyNameShort
+		sortByColumn: ValidFromMonth
+
+		annotation SummarizationSetBy = User
+
+	partition dim_AYT_Survey = entity
+		mode: directQuery
+		source
+			entityName: dim_Survey
+			expressionSource: 'DirectQuery to AS - AYT_Metrics'
+
+	changedProperty = Name
+

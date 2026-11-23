@@ -1,0 +1,104 @@
+table dim_HR_BusinessUnit
+	lineageTag: 89eadac2-6030-49d4-baed-1e0193074f8c
+	sourceLineageTag: a1f4af3d-a612-474e-af6c-e27a77a9c276
+
+	/// Business Unit identifier. Joins to fct_Actual, fct_Budget and fct_Forecast. Use BusinessUnitName in reports.
+	column BusinessUnitCode
+		dataType: string
+		isHidden
+		isNullable: false
+		displayFolder: Keys
+		lineageTag: 73fd6d9a-0c79-4ff3-a4e1-02fe5b8d8d8f
+		sourceLineageTag: 066b8e6f-cb3d-4390-b91f-e9b8da9f0749
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BusinessUnitCode
+
+		annotation SummarizationSetBy = User
+
+	/// Business Unit display name. Use for BU slicers, rows and axis labels.
+	column BusinessUnitName
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 9d896a49-c086-448a-8c43-5528d1ce3394
+		sourceLineageTag: 2c73940f-9c05-4e44-8bc1-8db4a8f7923d
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BusinessUnitName
+
+		annotation SummarizationSetBy = User
+
+	/// Overall business segment the Business Unit belongs to. Use for segment-level grouping.
+	column BusinessSegment
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: a409307a-3e15-43e4-bf46-4ee533af54d9
+		sourceLineageTag: 55320946-2494-4f89-83d5-9c0c47c6befa
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BusinessSegment
+
+		annotation SummarizationSetBy = User
+
+	/// Platform-level grouping of Business Units (the ME view). Use for Platform slicers and grouping.
+	column Platform
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: b249c87e-8940-4fed-a3c0-a570482c3476
+		sourceLineageTag: c55b984d-2134-4915-a70a-22ab10bf449c
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Platform
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE if the Business Unit is currently active. FALSE for historical Business Units.
+	column IsActive
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: f7b24e36-22c2-4cc2-89d6-e1ed793baa7a
+		sourceLineageTag: ef92424f-cb13-4ddc-95d3-0815025a6b8e
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE if the Business Unit is included in Ask Your Team reporting.
+	column IncludeAYT
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: d0543207-1bd3-4528-bd3e-273e50d3aefe
+		sourceLineageTag: 1ddc5c31-5b53-4562-9425-8cd03b1c8600
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IncludeAYT
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE if the Business Unit is included in non-financial reporting.
+	column IncludeNonFinancial
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: a854e994-5238-4d7a-83e8-cf1aa1fe11cf
+		sourceLineageTag: dfed95ba-48b6-4222-bbff-98af774617da
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IncludeNonFinancial
+
+		annotation SummarizationSetBy = User
+
+	partition dim_HR_BusinessUnit = entity
+		mode: directQuery
+		source
+			entityName: dim_BusinessUnit
+			expressionSource: 'DirectQuery to AS - HR_Metrics'
+
+	changedProperty = Name
+

@@ -1,0 +1,229 @@
+table dim_HR_Calendar
+	lineageTag: 99820480-f678-49ba-849c-c5e124265ec4
+	sourceLineageTag: a6384fe7-2703-4912-9766-4e5d93a1dec5
+
+	/// One row per day, 2022-2030. Marked date column. Fact tables join here on MonthStartDate.
+	column Date
+		dataType: dateTime
+		isNullable: false
+		formatString: General Number
+		displayFolder: Keys
+		lineageTag: 7a0241bf-aac8-4ae1-86a5-77ba3689ed47
+		sourceLineageTag: 6e5bb20c-c593-4b57-a5dd-e5a9270da212
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Date
+
+		annotation SummarizationSetBy = User
+
+	/// Month as a YYYYMM integer, e.g. 202609. Sort column for CalMonthYear and CalMonthYearShort.
+	column MonthCode
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Sort Columns
+		lineageTag: 33049c6f-12b3-4440-b00d-02f62f883dc9
+		sourceLineageTag: 231432eb-06bf-442c-b68c-0a5101c7c683
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MonthCode
+
+		annotation SummarizationSetBy = User
+
+	/// First day of the month. Used by measures to locate the reporting month.
+	column MonthStartDate
+		dataType: dateTime
+		isHidden
+		formatString: General Number
+		displayFolder: Attributes
+		lineageTag: 3c6cfcf5-ac61-4b48-808b-c4e9b73ce8f2
+		sourceLineageTag: 6e307c52-593f-4a6b-b1ea-963a8c56ade5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: MonthStartDate
+
+		annotation SummarizationSetBy = User
+
+	/// Calendar year, e.g. 2026.
+	column CalYear
+		dataType: int64
+		formatString: 0
+		displayFolder: Attributes
+		lineageTag: 9789a9c1-159b-4328-80af-3b863a5b826d
+		sourceLineageTag: e3153ca0-83d5-4407-822a-0f69e693ad71
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalYear
+
+		annotation SummarizationSetBy = User
+
+	/// Quarter number, 1-4.
+	column CalQuarterNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Attributes
+		lineageTag: 695677b0-a539-4076-8249-a6f3790b1c50
+		sourceLineageTag: 56b62779-6d0b-4019-a121-b15de5f23585
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalQuarterNum
+
+		annotation SummarizationSetBy = User
+
+	/// Quarter and year, e.g. Q1 2026. Sorts by CalQuarterSortKey.
+	column CalQuarterLabel
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 1c885e3e-b85c-4730-b0fc-af1ed21eed2f
+		sourceLineageTag: c1d2a966-1375-4c2b-a9c9-a2801b94ed03
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalQuarterLabel
+		sortByColumn: CalQuarterSortKey
+
+		annotation SummarizationSetBy = User
+
+	/// Year * 10 + quarter, e.g. 20261. Sort column for CalQuarterLabel.
+	column CalQuarterSortKey
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Sort Columns
+		lineageTag: d3be776c-2ee7-4472-bf28-469b2a479cac
+		sourceLineageTag: 60453385-1c1a-4c78-9556-31a645e99695
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalQuarterSortKey
+
+		annotation SummarizationSetBy = User
+
+	/// Month number, 1-12. Sort column for CalMonthLong and CalMonthShort.
+	column CalMonthNum
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Sort Columns
+		lineageTag: 2a5aba7a-6067-444f-854e-ec15246f3b33
+		sourceLineageTag: 41f92b7e-75c1-44bd-bb2c-ba5c24ab682f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthNum
+
+		annotation SummarizationSetBy = User
+
+	/// Short month name, e.g. Jan. Sorts by CalMonthNum.
+	column CalMonthShort
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 62cd4756-1b0f-4651-a7a6-dabea046f541
+		sourceLineageTag: c37bd84d-42b2-4253-8046-2c24fa0478a5
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthShort
+		sortByColumn: CalMonthNum
+
+		annotation SummarizationSetBy = User
+
+	/// Month name, e.g. January. Sorts by CalMonthNum.
+	column CalMonthLong
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 90384f1a-6c70-4bc9-a09a-2fedf533c95e
+		sourceLineageTag: b6ab9a66-ff48-46af-8511-80c46f88cefd
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthLong
+		sortByColumn: CalMonthNum
+
+		annotation SummarizationSetBy = User
+
+	/// Month and year, e.g. January 2026. Reporting-month slicer column. Sorts by MonthCode.
+	column CalMonthYear
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: bdb3c48f-087d-4a65-bf92-9e85f9b658a2
+		sourceLineageTag: ed0c0f54-7121-4d51-8359-3bb0a5e97aa4
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthYear
+		sortByColumn: MonthCode
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for the month of the last refresh date. Not the reporting month.
+	column IsCurrentMonth
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: f069e886-f05d-4059-840c-a6c9af5ca073
+		sourceLineageTag: 8748cbdc-b8a1-49de-b402-c86d029e7323
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsCurrentMonth
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for the year of the last refresh date.
+	column IsCurrentYear
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: 6ee03508-0a76-437e-b035-46a2f8a98217
+		sourceLineageTag: e53a0678-d909-46c9-b6d1-dcc70e68dc21
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsCurrentYear
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for months after the month of the last refresh date.
+	column IsFutureMonth
+		dataType: boolean
+		isHidden
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: c1a8f17c-89aa-4beb-9393-c4a7f74c34f5
+		sourceLineageTag: f024ed8c-dd3f-4149-a318-1cf4e2007258
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsFutureMonth
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE if fct_Actual has any rows for the month, model-wide. Ignores BU and gender filters, so do not use it as a rolling window guard.
+	column HasActuals
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: 6cc362f9-a30d-4a48-9075-644c1c69d1cb
+		sourceLineageTag: ebea1c87-6fe2-4062-aaef-b844515d1d41
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: HasActuals
+
+		annotation SummarizationSetBy = User
+
+	/// Short month and year, e.g. Jan-26. Trend chart x-axis label. Sorts by MonthCode.
+	column CalMonthYearShort
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 19f0bba4-eb4b-486f-9adf-60ec5cf7d008
+		sourceLineageTag: 5775ee0d-a313-4abc-9fb3-23b26a87ac2f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: CalMonthYearShort
+		sortByColumn: MonthCode
+
+		annotation SummarizationSetBy = User
+
+	partition dim_HR_Calendar = entity
+		mode: directQuery
+		source
+			entityName: dim_Calendar
+			expressionSource: 'DirectQuery to AS - HR_Metrics'
+
+	changedProperty = Name
+

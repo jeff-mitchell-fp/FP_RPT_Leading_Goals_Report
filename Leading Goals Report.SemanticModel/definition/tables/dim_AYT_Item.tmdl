@@ -1,0 +1,90 @@
+/// Survey question dimension for Ask Your Team. ItemLabel identifies the question. Weighted Average items use Agreement Score; Distribution items use Response Count and Response %. Category groups agreement questions using one maintained mapping across all surveys; it is distinct from M2's response-option categories. Use Category Score for category results. IncludeLeadingGoals identifies a question subset and does not define category membership or a separate implemented score.
+table dim_AYT_Item
+	lineageTag: 0c7337d2-8eae-4931-844a-e3a433b6545c
+	sourceLineageTag: 304b04a8-40f8-4b82-8ac5-f6e6b713a269
+
+	/// Unique question identifier. Relationship key for engagement facts.
+	column ItemCode
+		dataType: string
+		isHidden
+		isNullable: false
+		displayFolder: Keys
+		lineageTag: 8e8915bd-c8a7-4ae5-99d1-a85fa342bff1
+		sourceLineageTag: a035a554-8b5e-48db-9df6-01bf88ede659
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ItemCode
+
+		annotation SummarizationSetBy = User
+
+	/// Approved question text for display.
+	column ItemLabel
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: d325a61c-0c3c-4fb7-a062-41439afc8d5f
+		sourceLineageTag: b9da4aab-2316-4c49-af3a-8839c35c03ab
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ItemLabel
+
+		annotation SummarizationSetBy = User
+
+	/// Identifies Weighted Average or Distribution aggregation.
+	column ItemType
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: ff2f4865-f637-4b67-91d7-8405596ca277
+		sourceLineageTag: 6f464ccf-ddb0-4b0d-94cd-6cc145e25e64
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: ItemType
+
+		annotation SummarizationSetBy = User
+
+	/// Thematic question grouping. Intentionally blank for multi-choice questions.
+	column Category
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 644a7447-8bec-47e6-86d9-c8aa19edb839
+		sourceLineageTag: be03f630-1f1b-4dd5-adf2-57295b6e81bb
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Category
+
+		annotation SummarizationSetBy = User
+
+	/// Maintained question display order.
+	column SortOrder
+		dataType: int64
+		isHidden
+		formatString: 0
+		displayFolder: Attributes
+		lineageTag: ed348abf-8189-4128-88ce-a0d73f14c056
+		sourceLineageTag: b2b17581-a0db-4ae4-953a-b5423ade5e80
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: SortOrder
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for questions included in Leading Goals reporting.
+	column IncludeLeadingGoals
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: cc9c5aa1-e21f-48bb-9f9d-0b2ba0902c0a
+		sourceLineageTag: f16125fa-40ad-4d6c-b7c7-3257373e1189
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IncludeLeadingGoals
+
+		annotation SummarizationSetBy = User
+
+	partition dim_AYT_Item = entity
+		mode: directQuery
+		source
+			entityName: dim_Item
+			expressionSource: 'DirectQuery to AS - AYT_Metrics'
+
+	changedProperty = Name
+

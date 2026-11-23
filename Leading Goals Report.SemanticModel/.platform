@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "Leading Goals Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a9cdd19f-182e-4191-8a02-a9c237fd112e"
+  }
+}

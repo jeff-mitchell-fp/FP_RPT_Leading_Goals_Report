@@ -1,0 +1,52 @@
+/// Metrics available to the Leading Goals summary matrix.
+table 'Leading Goals Metrics'
+	lineageTag: f76b1197-ae32-4f16-86bc-ec3746d3bfc1
+
+	column 'Metric Key'
+		dataType: string
+		isHidden
+		lineageTag: ab95ef4a-be02-4569-a73d-b998500fab77
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Metric Key]
+
+	column Metric
+		dataType: string
+		lineageTag: 0278a521-9ae6-442d-9791-46115a683d28
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Metric]
+		sortByColumn: 'Sort Order'
+
+	column 'Sort Order'
+		dataType: int64
+		isHidden
+		lineageTag: a90c1863-0760-4cce-9748-f9e240ea1d0c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Sort Order]
+
+	column IncludeLeadingGoals
+		dataType: boolean
+		lineageTag: de948d0d-493e-46a4-b103-4d0f4c45e725
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [IncludeLeadingGoals]
+
+	partition 'Leading Goals Metrics' = calculated
+		mode: import
+		source =
+				DATATABLE (
+				    "Metric Key", STRING,
+				    "Metric", STRING,
+				    "Sort Order", INTEGER,
+				    "IncludeLeadingGoals", BOOLEAN,
+				    {
+				        { "AYT_AVG", "Average Score", 1, TRUE },
+				        { "AYT_PART", "Participation Rate", 2, TRUE },
+				        { "HC_F", "Headcount Female %", 3, TRUE },
+				        { "HC_M", "Headcount Male %", 4, TRUE },
+				        { "VOL_R12", "Voluntary Turnover Rolling 12", 5, TRUE }
+				    }
+				)
+

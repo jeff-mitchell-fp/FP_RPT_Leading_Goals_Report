@@ -1,0 +1,139 @@
+table _LG_Measures
+	lineageTag: c110ee78-f585-46b9-9c6e-5e7c60288ae0
+
+	measure 'AYT Average Agreement Score' =
+			
+			CALCULATE (
+			    AVERAGEX (
+			        VALUES ( dim_AYT_Item[ItemCode] ),
+			        [Agreement Score]
+			    ),
+			    REMOVEFILTERS ( dim_AYT_Item )
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 9e7422f6-5d47-4394-b14e-60577e4ed89d
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		changedProperty = DisplayFolder
+
+	/// Current score for the catalog metric under the active report filters.
+	measure Score =
+			VAR Metric = SELECTEDVALUE ( 'Leading Goals Metric Catalog'[MetricKey] )
+			VAR ItemCode = SELECTEDVALUE ( 'Leading Goals Metric Catalog'[AYTItemCode] )
+			VAR ScoreType = SELECTEDVALUE ( 'Leading Goals Metric Catalog'[ScoreType] )
+			RETURN
+			    SWITCH (
+			        Metric,
+			        "AYT_AVG", [AYT Average Agreement Score],
+			        "AYT_PART", [Participation Rate],
+			        "HC_F", [Headcount Female %],
+			        "HC_M", [Headcount Male %],
+			        "VOL_R12", [Voluntary Turnover Rolling 12],
+			        IF (
+			            NOT ISBLANK ( ItemCode ),
+			            CALCULATE (
+			                SWITCH (
+			                    ScoreType,
+			                    "Agreement", [Agreement Score],
+			                    "Affirmative", [Affirmative Response %]
+			                ),
+			                KEEPFILTERS ( dim_AYT_Item[ItemCode] = ItemCode ),
+			                KEEPFILTERS ( dim_AYT_Item[IncludeLeadingGoals] = TRUE () )
+			            )
+			        )
+			    )
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 1091e809-fe4d-46c1-b457-79d955bff078
+
+	/// Includes mapped KPI rows and questions approved by the AYT source.
+	measure '_LG Show Row' =
+			VAR ScoreType = SELECTEDVALUE ( 'Leading Goals Metric Catalog'[ScoreType] )
+			VAR ItemCode = SELECTEDVALUE ( 'Leading Goals Metric Catalog'[AYTItemCode] )
+			RETURN
+			    SWITCH (
+			        TRUE (),
+			        ScoreType = "KPI", 1,
+			        ScoreType IN { "Agreement", "Affirmative" } && NOT ISBLANK ( ItemCode ),
+			            IF (
+			                CALCULATE (
+			                    COUNTROWS ( dim_AYT_Item ),
+			                    KEEPFILTERS ( dim_AYT_Item[ItemCode] = ItemCode ),
+			                    KEEPFILTERS ( dim_AYT_Item[IncludeLeadingGoals] = TRUE () )
+			                ) > 0,
+			                1
+			            )
+			    )
+		isHidden
+		lineageTag: bd810744-7a10-4e8a-86ca-9debbdac190d
+
+	/// Chooses an explicitly selected BU, then Platform, then the unrestricted Full Business scope.
+	measure '_LG Scope Type' =
+			SWITCH (
+			    TRUE (),
+			    ISFILTERED ( dim_HR_BusinessUnit[BusinessUnitName] ),
+			        IF ( HASONEFILTER ( dim_HR_BusinessUnit[BusinessUnitName] ), "BusinessUnit" ),
+			    ISFILTERED ( dim_HR_BusinessUnit[Platform] ),
+			        IF ( HASONEFILTER ( dim_HR_BusinessUnit[Platform] ), "Platform" ),
+			    "FullBusiness"
+			)
+		isHidden
+		lineageTag: 45bb8633-9e80-4355-b42e-44e5abdc29f1
+
+	/// Reads the HR BU code, HR Platform value, or the Full Business lookup key.
+	measure '_LG Scope Key' =
+			SWITCH (
+			    [_LG Scope Type],
+			    "BusinessUnit", SELECTEDVALUE ( dim_HR_BusinessUnit[BusinessUnitCode] ),
+			    "Platform", SELECTEDVALUE ( dim_HR_BusinessUnit[Platform] ),
+			    "FullBusiness", "FULL_BUSINESS"
+			)
+		isHidden
+		lineageTag: ce750069-a77b-41a0-baa9-fd13a6814e9a
+
+	/// Target for the catalog metric, selected reporting calendar year and organisation scope.
+	measure Target =
+			LOOKUPVALUE (
+			    'Annual Targets and Goals'[Target],
+			    'Annual Targets and Goals'[MetricKey], SELECTEDVALUE ( 'Leading Goals Metric Catalog'[MetricKey] ),
+			    'Annual Targets and Goals'[GoalYear], SELECTEDVALUE ( dim_HR_Calendar[CalYear] ),
+			    'Annual Targets and Goals'[ScopeType], [_LG Scope Type],
+			    'Annual Targets and Goals'[ScopeKey], [_LG Scope Key],
+			    BLANK ()
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 4a6953c4-9362-4b73-9c43-1802a0a04a26
+
+	/// Leading Goal for the catalog metric, selected reporting calendar year and organisation scope.
+	measure 'Leading Goal' =
+			LOOKUPVALUE (
+			    'Annual Targets and Goals'[LeadingGoal],
+			    'Annual Targets and Goals'[MetricKey], SELECTEDVALUE ( 'Leading Goals Metric Catalog'[MetricKey] ),
+			    'Annual Targets and Goals'[GoalYear], SELECTEDVALUE ( dim_HR_Calendar[CalYear] ),
+			    'Annual Targets and Goals'[ScopeType], [_LG Scope Type],
+			    'Annual Targets and Goals'[ScopeKey], [_LG Scope Key],
+			    BLANK ()
+			)
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: d268bfb7-4f44-49db-9df4-c2576d7f2508
+
+	column Column1
+		dataType: string
+		lineageTag: 0c518632-5e42-46e4-958e-ea8705670285
+		summarizeBy: none
+		sourceColumn: Column1
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _LG_Measures = m
+		mode: import
+		source =
+				let
+				    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("i44FAA==", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t])
+				in
+				    Source
+
+	annotation PBI_ResultType = Table
+

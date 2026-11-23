@@ -1,0 +1,69 @@
+table 'Annual Targets and Goals'
+	lineageTag: 35866b06-61f7-4560-bdd4-ff315d544d6d
+
+	column MetricKey
+		dataType: string
+		lineageTag: 45cc2b10-518d-4fda-b44f-e0b91e2ca34c
+		summarizeBy: none
+		sourceColumn: MetricKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column GoalYear
+		dataType: int64
+		formatString: 0
+		lineageTag: e2e04b2e-2c33-45d4-91e1-ae174d1ebf3b
+		summarizeBy: sum
+		sourceColumn: GoalYear
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScopeType
+		dataType: string
+		lineageTag: 6b6ed90e-0153-467c-90db-39e9bcb94553
+		summarizeBy: none
+		sourceColumn: ScopeType
+
+		annotation SummarizationSetBy = Automatic
+
+	column ScopeKey
+		dataType: string
+		lineageTag: 8fcf1e24-f5b8-4ee4-bae3-ed8d2d15f360
+		summarizeBy: none
+		sourceColumn: ScopeKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column Target
+		dataType: double
+		lineageTag: 770705e0-1a46-422a-9645-4cf19586d2d9
+		summarizeBy: sum
+		sourceColumn: Target
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LeadingGoal
+		dataType: double
+		lineageTag: 2e11a2cd-0a0c-426e-a07e-3fe3680dd690
+		summarizeBy: sum
+		sourceColumn: LeadingGoal
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Annual Targets and Goals' = m
+		mode: import
+		queryGroup: 'Production Queries'
+		source =
+				let
+				    Source = stg_AnnualTargetsAndGoals
+				in
+				    Source
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Leading Goals Report"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "c42c751a-5f1a-43d9-8845-70d00df97a27"
+  }
+}

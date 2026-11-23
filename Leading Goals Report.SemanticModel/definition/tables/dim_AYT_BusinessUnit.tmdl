@@ -1,0 +1,115 @@
+/// Business Unit dimension for Ask Your Team survey reporting. Use BusinessUnitName for Business Unit (BU) selections and Platform for Management Entity reporting; BusinessSegment is a separate grouping. Retain inactive members for history. Reports control IncludeAYT eligibility. Measures retain UNATTRIBUTED in Full Business results while excluding it from organisational detail and subsets. These reporting rules are not row-level security.
+table dim_AYT_BusinessUnit
+	lineageTag: 2346fcab-d3ed-46a6-b54b-bf0c7af3f140
+	sourceLineageTag: 844e6c74-1d0d-4109-bd98-b4288974f32d
+
+	/// Business Unit identifier. Relationship key for AYT facts. Use BusinessUnitName in reports.
+	column BusinessUnitCode
+		dataType: string
+		isHidden
+		isNullable: false
+		displayFolder: Keys
+		lineageTag: 49489c11-281e-4f72-a89e-9f7998548e8d
+		sourceLineageTag: d43cc7cb-267a-4bdd-ac4e-1ac53c174509
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BusinessUnitCode
+
+		annotation SummarizationSetBy = User
+
+	/// Business Unit display name. Use for BU slicers, rows and axis labels.
+	column BusinessUnitName
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: fc55c764-c354-4e41-9130-9dd0b227308e
+		sourceLineageTag: 88b869bb-3be0-4266-aa41-383e37b8a767
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BusinessUnitName
+
+		annotation SummarizationSetBy = User
+
+	/// Business segment grouping.
+	column BusinessSegment
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: 1ba6b4ee-79f4-402c-92a5-ad512b784eed
+		sourceLineageTag: 4181ea19-b6cd-4691-a818-a2469485d18f
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: BusinessSegment
+
+		annotation SummarizationSetBy = User
+
+	/// Platform grouping used for Management Entity reporting.
+	column Platform
+		dataType: string
+		displayFolder: Attributes
+		lineageTag: dd3fe7f9-eec5-422d-84bc-54fc481e3f19
+		sourceLineageTag: e6c52d9c-5f35-4d02-8585-1205007c7416
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: Platform
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for currently active Business Units. Retain inactive members for historical reporting.
+	column IsActive
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: f2a09f4a-3975-4648-b389-d112fee85055
+		sourceLineageTag: 4ef4265e-7531-4fec-844d-6a0685dee842
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsActive
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for Business Units included in AYT reporting.
+	column IncludeAYT
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: bce1a327-070b-4dc8-a05c-bb3561b4d27e
+		sourceLineageTag: 4f81c31a-dcb0-4699-ace4-c4ecd99c72b1
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IncludeAYT
+
+		annotation SummarizationSetBy = User
+
+	/// Shared HR reference flag identifying inclusion in non-financial reporting.
+	column IncludeNonFinancial
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: 9885b573-b65f-4965-b653-3e7646112302
+		sourceLineageTag: f94f5663-200a-4831-a174-903cad9049cf
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IncludeNonFinancial
+
+		annotation SummarizationSetBy = User
+
+	/// TRUE for the UNATTRIBUTED member. Exclude from BU and Management Entity views; retain in Full Business totals.
+	column IsUnattributed
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
+		displayFolder: Flags
+		lineageTag: c6fbef3b-86bf-46db-ba5a-cb264df333fa
+		sourceLineageTag: 41a6ae4b-547c-45d9-8c62-018ca976a6d8
+		dataCategory: Uncategorized
+		summarizeBy: none
+		sourceColumn: IsUnattributed
+
+		annotation SummarizationSetBy = User
+
+	partition dim_AYT_BusinessUnit = entity
+		mode: directQuery
+		source
+			entityName: dim_BusinessUnit
+			expressionSource: 'DirectQuery to AS - AYT_Metrics'
+
+	changedProperty = Name
+

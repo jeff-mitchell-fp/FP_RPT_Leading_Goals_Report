@@ -1,0 +1,337 @@
+/// Explicit Ask Your Team survey measures. Use visible presentation measures for results; hidden bases do not apply all reporting guards. Agreement Score describes one question, Category Score averages valid question scores equally, and Overall Score is the provider-supplied Full Business benchmark. Participation Completed counts full survey completions; question/option counts are not unique people across questions or surveys. With no time restriction, results use the latest nonfuture applicable reporting month; an explicit survey or month must resolve to one compatible survey. Monthly applicability carries survey results forward without creating new observations. Do not sum scores or combine surveys into time totals. Blank means unavailable or unsupported context, not measured zero. Reports control IncludeAYT eligibility; ineligible Business Units have no fact rows by the confirmed pipeline rule.
+table _AYT_Measures
+	lineageTag: 6f4e8611-ce40-494c-9e0d-40a634aea2a1
+	sourceLineageTag: e3062480-cbed-463a-9239-07534ef68bb5
+
+	/// HELPER: _Reporting MonthStartDate
+	/// Resolves an explicit reporting month or the latest nonfuture applicable month.
+	/// Returns blank for survey-only selection or unavailable month context.
+	/// Use _Reporting SurveyCode to validate survey compatibility.
+	measure '_Reporting MonthStartDate 2' = EXTERNALMEASURE("_Reporting MonthStartDate", DATETIME, "DirectQuery to AS - AYT_Metrics")
+		formatString: dd/mm/yyyy
+		isHidden
+		displayFolder: _Global Helpers
+		lineageTag: 6d63c3e9-a857-4fa3-8727-fe86576d606e
+		sourceLineageTag: f863843c-14ee-482f-a44b-880aca00217c
+		dataCategory: Uncategorized
+
+	/// HELPER: _Reporting SurveyCode
+	/// Returns one accepted survey for the reporting month or explicit survey selection.
+	/// Returns blank for conflicting, multiple or unavailable selections.
+	measure '_Reporting SurveyCode' = EXTERNALMEASURE("_Reporting SurveyCode", STRING, "DirectQuery to AS - AYT_Metrics")
+		isHidden
+		displayFolder: _Global Helpers
+		lineageTag: d2ac8e93-a5a9-4575-aa0b-ff8fd0b32378
+		sourceLineageTag: d4e655d2-ebc9-4986-98fb-07f1d75bb799
+		dataCategory: Uncategorized
+
+	/// HELPER: _Agreement Points Base
+	/// Sums generated agreement points in the current filter context.
+	measure '_Agreement Points Base' = EXTERNALMEASURE("_Agreement Points Base", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: Agreement Score\_Helpers
+		lineageTag: 374beec2-a3e5-427c-b059-a8cad571a479
+		sourceLineageTag: 26892c59-e658-4a7e-bc76-8d76185f4fd5
+		dataCategory: Uncategorized
+
+	/// HELPER: _Agreement Respondents Base
+	/// Sums valid scored-response counts in the current filter context.
+	/// Counts across questions or surveys do not represent unique people.
+	measure '_Agreement Respondents Base' = EXTERNALMEASURE("_Agreement Respondents Base", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: Agreement Score\_Helpers
+		lineageTag: 656bb682-a223-4dc9-81b0-20fc2ed15bf0
+		sourceLineageTag: e9db3a5d-920e-4007-943d-5e8a1ae62491
+		dataCategory: Uncategorized
+
+	/// HELPER: _Agreement Score Base
+	/// Returns the response-weighted decimal agreement score from component bases.
+	/// Calling measures supply reporting scope. An empty denominator returns blank.
+	measure '_Agreement Score Base' = EXTERNALMEASURE("_Agreement Score Base", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: Agreement Score\_Helpers
+		lineageTag: c5bdc6c9-e89f-4004-b1cf-41faf9d0a801
+		sourceLineageTag: 806499c1-7437-4862-a35f-3631f4d5e4c4
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Agreement Score
+	/// Returns the response-weighted agreement score for one Weighted Average
+	/// question and the resolved survey, within report-filtered organisational scope.
+	/// Returns blank for multiple questions or no valid scored responses.
+	/// Full Business includes UNATTRIBUTED; organisational detail and subsets exclude it.
+	/// Use: Cards, question and organisational tables/matrices, and trends with time totals disabled.
+	measure 'Agreement Score' = EXTERNALMEASURE("Agreement Score", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Agreement Score
+		lineageTag: d09de3d6-8713-4e33-892d-674ee9e9677e
+		sourceLineageTag: 99aaa4a2-1a02-4dfb-84c4-d5bb69bbdaeb
+		dataCategory: Uncategorized
+
+	/// HELPER: _Participation Completed Base
+	/// Sums supplied full-completion counts in the current filter context.
+	measure '_Participation Completed Base' = EXTERNALMEASURE("_Participation Completed Base", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: Participation\_Helpers
+		lineageTag: 12e49694-d564-4c50-95d7-9c43bfeb5db8
+		sourceLineageTag: 26bd45b8-601c-4ae9-b7c2-0055a2c949d0
+		dataCategory: Uncategorized
+
+	/// HELPER: _Participation Invited Base
+	/// Sums supplied invitation counts in the current filter context.
+	measure '_Participation Invited Base' = EXTERNALMEASURE("_Participation Invited Base", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: Participation\_Helpers
+		lineageTag: 088e9d32-5c23-4a96-8d0b-78e214ffed6f
+		sourceLineageTag: 5f46c209-72c5-47cb-a687-10d737e41df4
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Participation Completed
+	/// Returns supplied full-completion counts for the resolved survey and report-filtered
+	/// organisational scope. Full Business includes UNATTRIBUTED; detail and subsets exclude it.
+	/// Use: Survey cards, organisational tables/matrices and trends with time totals disabled.
+	measure 'Participation Completed' = EXTERNALMEASURE("Participation Completed", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		displayFolder: Participation
+		lineageTag: a462c515-5f26-44a7-bafe-a580d93f7a2b
+		sourceLineageTag: a07d93dc-706d-45b8-a71b-261c8ff9d187
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Participation Invited
+	/// Returns supplied invitation counts for the resolved survey and report-filtered
+	/// organisational scope. Full Business includes UNATTRIBUTED; detail and subsets exclude it.
+	/// Use: Survey cards, organisational tables/matrices and trends with time totals disabled.
+	measure 'Participation Invited' = EXTERNALMEASURE("Participation Invited", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		displayFolder: Participation
+		lineageTag: b57b0389-23db-4ea8-b261-3144ae72e536
+		sourceLineageTag: 833d6ff4-15c1-4e3c-8010-5077891659ce
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Participation Rate
+	/// Returns summed full completions divided by summed invitations for the resolved
+	/// survey and report-filtered organisational scope. An empty or zero denominator returns blank.
+	/// Use: Survey cards, organisational tables/matrices and trends with time totals disabled.
+	measure 'Participation Rate' = EXTERNALMEASURE("Participation Rate", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Participation
+		lineageTag: 7db1ad64-6683-4fd2-b556-a2a0e9cf0cc1
+		sourceLineageTag: f245adec-ccc5-4408-874c-9e7754bb63bc
+		dataCategory: Uncategorized
+
+	/// HELPER: _Overall Score Base
+	/// Returns the supplied decimal overall score for one survey.
+	/// Returns blank when survey context is not singular or the supplied value is missing.
+	measure '_Overall Score Base' = EXTERNALMEASURE("_Overall Score Base", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: Overall Score\_Helpers
+		lineageTag: 3219d8e1-8ff0-4480-9fc2-09b8e583c244
+		sourceLineageTag: f8d28a7a-e7ae-4c9a-aa0a-201cf5f2b94a
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Overall Score
+	/// Returns the AYT-supplied Full Business overall score for the resolved survey.
+	/// Retains that benchmark under organisational and question selections.
+	/// A Business Unit selection does not turn this into that unit's own score.
+	/// Use: Survey-level benchmark cards only; not a question or Business Unit result.
+	measure 'Overall Score' = EXTERNALMEASURE("Overall Score", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Overall Score
+		lineageTag: a5bfea60-50ad-49d8-bb26-0a3b92498470
+		sourceLineageTag: 3310937a-5525-4963-9d31-1db2b9691465
+		dataCategory: Uncategorized
+
+	/// HELPER: _Response Count Base
+	/// Sums observed response-option counts in the current filter context.
+	measure '_Response Count Base' = EXTERNALMEASURE("_Response Count Base", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: Distribution\_Helpers
+		lineageTag: cf47f010-9dc7-47eb-bac9-0a83a35ebb79
+		sourceLineageTag: f72e9bf6-c0c5-4924-bb93-cfce66165638
+		dataCategory: Uncategorized
+
+	/// HELPER: _Response Answered Base
+	/// Returns the summed valid answered-option count with the response-option
+	/// filter removed, preserving the remaining filter context.
+	measure '_Response Answered Base' = EXTERNALMEASURE("_Response Answered Base", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: Distribution\_Helpers
+		lineageTag: e2523578-e61a-4e2a-9582-873c2ddbb3f5
+		sourceLineageTag: c9c89847-04fd-4b16-8ca8-8c97b8adbc19
+		dataCategory: Uncategorized
+
+	/// HELPER: _Response % Base
+	/// Divides the response count base by the answered-response base.
+	/// An empty or zero denominator returns blank.
+	measure '_Response % Base' = EXTERNALMEASURE("_Response % Base", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: Distribution\_Helpers
+		lineageTag: e3878d39-a660-422a-87e0-9982e2677ba0
+		sourceLineageTag: 6b1b4a58-b011-4b57-824a-ec5e761c3999
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Response Count
+	/// Returns observed response counts for one Distribution question and the
+	/// resolved survey within report-filtered organisational scope. Preserves option
+	/// filters; Full Business includes UNATTRIBUTED, while detail and subsets exclude it.
+	/// Counts valid answers to one question, not full survey completions or unique people across questions/surveys.
+	/// Use: Cards, response-option and organisational tables/matrices, and trends with time totals disabled.
+	measure 'Response Count' = EXTERNALMEASURE("Response Count", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		displayFolder: Distribution
+		lineageTag: 04e3f752-98bb-499e-848c-305df5d47293
+		sourceLineageTag: 497a9988-0928-4d8b-a30f-ffdede21a5f6
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Response %
+	/// Returns one directly filtered option's share of all valid answered responses
+	/// for one Distribution question and the resolved survey within report-filtered
+	/// organisational scope. Multiple-option or unrestricted option summaries return blank.
+	/// Use: Single-option cards, response-option charts and organisational tables/matrices; disable time totals.
+	measure 'Response %' = EXTERNALMEASURE("Response %", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Distribution
+		lineageTag: c86bda2c-10eb-46f9-9a4e-b6ef03066f5e
+		sourceLineageTag: 6df176cc-e4b3-4dde-a351-cc0ec5d66897
+		dataCategory: Uncategorized
+
+	/// HELPER: _Affirmative Response Count Base
+	/// Returns the mapped affirmative-option count for one supported Distribution
+	/// question, ignoring response-option filters. Missing affirmative rows remain blank.
+	measure '_Affirmative Response Count Base' = EXTERNALMEASURE("_Affirmative Response Count Base", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: Affirmative Response\_Helpers
+		lineageTag: 1fc203d6-71d1-4d82-ae01-cb5f94406fc8
+		sourceLineageTag: ee20a072-c789-4fb9-adb5-d3c8391df73b
+		dataCategory: Uncategorized
+
+	/// HELPER: _Affirmative Response % Base
+	/// Divides the affirmative-response count base by the all-valid-answered count
+	/// base. An empty or zero denominator returns blank.
+	measure '_Affirmative Response % Base' = EXTERNALMEASURE("_Affirmative Response % Base", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: Affirmative Response\_Helpers
+		lineageTag: 71efe155-17e2-40a4-b51b-9de04a9f076c
+		sourceLineageTag: 70ef07c2-42e6-4a6e-a922-335b7111535f
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Affirmative Response %
+	/// Returns the mapped affirmative share for one M1 or M3 question and the
+	/// resolved survey within report-filtered organisational scope. Ignores response-option
+	/// filters; Full Business includes UNATTRIBUTED, while detail and subsets exclude it.
+	/// Use: Question and organisational cards/tables/matrices, and trends with time totals disabled; not for response-option rows.
+	measure 'Affirmative Response %' = EXTERNALMEASURE("Affirmative Response %", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Affirmative Response
+		lineageTag: aae322ea-5137-417f-b8c1-278ccc933010
+		sourceLineageTag: 6c5fafc7-6d23-45b9-b559-7120caaf028d
+		dataCategory: Uncategorized
+
+	/// HELPER: _Survey Month Available
+	/// Returns 1 when the current month/survey context contains a matching
+	/// nonfuture applicability row; otherwise returns 0.
+	/// Use: Visual-level filter on reporting-month and survey slicers; require 1. Not for display or calculations.
+	measure '_Survey Month Available' = EXTERNALMEASURE("_Survey Month Available", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		displayFolder: _Global Helpers
+		lineageTag: 5f8794be-2c56-41ac-b8ed-93e4d7459f3a
+		sourceLineageTag: a3f360e3-5b07-4254-8372-b24dc49a90e9
+		dataCategory: Uncategorized
+
+	/// HELPER: _Category Score Base
+	/// Returns the equal-weight mean of unrounded valid agreement question
+	/// scores in the current context. Missing scores are excluded; zeros remain.
+	measure '_Category Score Base' = EXTERNALMEASURE("_Category Score Base", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		isHidden
+		displayFolder: Category Score\_Helpers
+		lineageTag: 1ea97131-0852-406f-beb0-b4481f487320
+		sourceLineageTag: d324f4e2-ed25-4f3a-9db6-c31c3b738cbc
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Category Score
+	/// Returns one category's equal-weight mean of valid question scores for
+	/// the resolved survey and report-filtered organisational population. Ignores
+	/// question, other item and response-option filters, including IncludeLeadingGoals.
+	/// Requires one directly scoped category; no category, multiple categories or no valid question scores return blank.
+	/// A question selection alone does not select its category. Valid zero question scores remain included.
+	/// Full Business includes UNATTRIBUTED;
+	/// organisational detail and subsets exclude it.
+	/// Use: Category cards, category and organisational tables/matrices, and trends with time totals disabled.
+	measure 'Category Score' = EXTERNALMEASURE("Category Score", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Category Score
+		lineageTag: b5d09817-c68e-4732-a5b7-ec4193db8ba4
+		sourceLineageTag: be42ed88-8aa8-4565-a8db-6db48e08e954
+		dataCategory: Uncategorized
+
+	/// HELPER: _Exclude Unattributed
+	/// Returns 1 for organisational detail or a restricted eligible population; otherwise 0.
+	/// Calling measures use this flag to exclude UNATTRIBUTED while retaining it in unrestricted Full Business totals.
+	/// IncludeAYT defines the comparison baseline only; reports control eligibility filtering.
+	measure '_Exclude Unattributed' = EXTERNALMEASURE("_Exclude Unattributed", INTEGER, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0
+		isHidden
+		displayFolder: _Global Helpers
+		lineageTag: 390ff5d8-9ac4-4644-97e2-b9af6f82fda8
+		sourceLineageTag: 21983c8a-e477-4a2f-ac16-297502abd2a9
+		dataCategory: Uncategorized
+
+	/// HELPER: _Selected Platform Name
+	/// Returns Full Business for unrestricted organisational scope, otherwise the uniquely resolved Platform.
+	/// Empty, missing or multiple-Platform contexts return blank.
+	/// Use: Titles and header text only. Not for calculations.
+	measure '_Selected Platform Name 2' = EXTERNALMEASURE("_Selected Platform Name", STRING, "DirectQuery to AS - AYT_Metrics")
+		displayFolder: _Global Helpers
+		lineageTag: 4b342b0a-ce15-414e-bac3-4c4903af8a22
+		sourceLineageTag: 77d570fc-2878-4671-8be4-5afdb4281562
+		dataCategory: Uncategorized
+
+	/// HELPER: _Selected BU Name
+	/// Returns the effective selected BU name or Multiple Business Units when BU name/code is directly filtered.
+	/// Returns blank without a direct BU restriction or when no selected BU remains.
+	/// Use: Titles and header text only. Not for calculations.
+	measure '_Selected BU Name 2' = EXTERNALMEASURE("_Selected BU Name", STRING, "DirectQuery to AS - AYT_Metrics")
+		displayFolder: _Global Helpers
+		lineageTag: d46abc62-0b8e-4c59-a79a-28959ca69f3a
+		sourceLineageTag: a0a6a0e0-5e44-4aaa-922d-d78cd95e6322
+		dataCategory: Uncategorized
+
+	/// HELPER: _Selected Survey Name
+	/// Returns the full name of the survey resolved by _Reporting SurveyCode.
+	/// Invalid, conflicting, multiple or unavailable time contexts return blank.
+	/// Use: Titles and header text only. Not for calculations.
+	measure '_Selected Survey Name' = EXTERNALMEASURE("_Selected Survey Name", STRING, "DirectQuery to AS - AYT_Metrics")
+		displayFolder: _Global Helpers
+		lineageTag: e115bf5f-6335-475a-aa92-ef5de1c269e7
+		sourceLineageTag: 1226257b-3a57-4b6a-82c2-78b0b8c329de
+		dataCategory: Uncategorized
+
+	/// HELPER: _Selected Category Name
+	/// Returns one nonblank directly scoped category, independently of other item filters and score availability.
+	/// Absent, blank or multiple categories return blank.
+	/// Use: Titles and header text only. Not for calculations.
+	measure '_Selected Category Name' = EXTERNALMEASURE("_Selected Category Name", STRING, "DirectQuery to AS - AYT_Metrics")
+		displayFolder: _Global Helpers
+		lineageTag: 5bf8bf02-10bf-42e4-8202-40e55a5fc051
+		sourceLineageTag: a77c453b-c1f8-44d6-bd54-f2fe983cd58d
+		dataCategory: Uncategorized
+
+	partition _AYT_Measures = entity
+		mode: directQuery
+		source
+			entityName: _Measures
+			expressionSource: 'DirectQuery to AS - AYT_Metrics'
+
+	changedProperty = Name
+

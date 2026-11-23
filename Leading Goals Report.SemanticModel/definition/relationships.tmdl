@@ -1,0 +1,4 @@
+relationship AutoDetected_14805f5c-1636-483d-b114-94c3ed4c667d
+	fromColumn: 'Annual Targets and Goals'.MetricKey
+	toColumn: 'Leading Goals Metric Catalog'.MetricKey
+
