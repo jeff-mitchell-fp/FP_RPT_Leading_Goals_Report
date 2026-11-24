@@ -8,8 +8,8 @@ Use `Not started`, `In progress`, `Blocked`, `Ready for validation` or `Complete
 
 ## Identifier convention
 
-Use local IDs `BL-001` onward. IDs `BL-001` through `BL-017` have been issued;
-the next available ID is `BL-018`. Never reuse an issued ID.
+Use local IDs `BL-001` onward. IDs `BL-001` through `BL-018` have been issued;
+the next available ID is `BL-019`. Never reuse an issued ID.
 
 ## Active backlog
 
@@ -18,6 +18,7 @@ the next available ID is `BL-018`. Never reuse an issued ID.
 | BL-012 | P1 | Not started | If label-based organisation syncing fails, implement and validate key-based wrappers using `BusinessUnitCode` and `TREATAS`, while retaining the Trend page's month transfer. | BL-007, BL-008, BL-009 | Wrapped measures pass repeated acceptance checks. |
 | BL-013 | P0 | Not started | After publication and before wider sharing, the user will check the live report with an intended viewer's access to the composite model and both source models. | BL-006, BL-007, BL-008, BL-009, BL-010 | Viewer can access the report and sees the validated results. |
 | BL-014 | P1 | Not started | Parked until feedback on the current report: add a Progression page with independent Base Month and Reporting Month selections. Show both values and the change for each reported figure under the same Business Unit and Platform filters. | BL-006 | Verify each endpoint against its source, including the AYT survey wave applicable to each month. Change equals Reporting Month minus Base Month. Percentage measures show change in percentage points. |
+| BL-018 | P1 | Not started | Investigate dynamically excluding Business Units with fewer than five people from report selections. | BL-003, BL-004 | Agree the headcount definition, period and blank handling, Trend behaviour, cross-model sync and any confidentiality requirements; assess implementation and regression checks before replacing fixed exclusions. |
 
 ## Completed
 
@@ -25,7 +26,7 @@ the next available ID is `BL-018`. Never reuse an issued ID.
 |---|---|
 | BL-001 | Both published source models were selected in Power BI Desktop and returned results in the prototype. |
 | BL-002 | The saved Leading Goals composite model contains DirectQuery connections to both `HR_Metrics` and `AYT_Metrics`. |
-| BL-003 | The user confirmed Desktop slicer acceptance, including the January 2023 lower bound and Technologies exclusions. |
+| BL-003 | The user confirmed Desktop slicer acceptance, including the January 2023 lower bound and Technologies exclusions. The user subsequently confirmed the Distributor EU, Distributor China, Manufacturing MX and China ME exclusions and matching figures; the updated report was published. |
 | BL-004 | The user confirmed remaining sync and blank-result checks; switching to eCommerce cleared the previous AYT result. |
 | BL-005 | The user confirmed Scores comparisons and remaining checks. BU-level Average Score is unavailable in the AYT report; the method or disposition for its subsequent confirmation was not specified. |
 | BL-006 | The final two-page presentation is recorded in Leading Goals Report Page Plans. Scores uses the active catalog matrix; Trend uses a single Measure dropdown and plots Score, Target and Leading Goal. Report-definition inspection and user screenshots confirm the layout. |

@@ -50,19 +50,23 @@ so each source model receives the selection through its own dimension.
 
 | Control | Visible field | Hidden counterpart | Intended behaviour |
 |---|---|---|---|
-| Platform | `dim_HR_BusinessUnit[Platform]` | `dim_AYT_BusinessUnit[Platform]` | Clearable. Filters results in both source contexts. |
-| Business Unit | `dim_HR_BusinessUnit[BusinessUnitName]` | `dim_AYT_BusinessUnit[BusinessUnitName]` | Clearable. Excludes the two Technologies Business Units listed below. |
+| Platform | `dim_HR_BusinessUnit[Platform]` | `dim_AYT_BusinessUnit[Platform]` | Clearable. Excludes China ME from choices and filters results in both source contexts. |
+| Business Unit | `dim_HR_BusinessUnit[BusinessUnitName]` | `dim_AYT_BusinessUnit[BusinessUnitName]` | Clearable. Excludes the Business Units listed below. |
 | Reporting Month | `dim_HR_Calendar[CalMonthYear]` | `dim_AYT_Calendar[CalMonthYear]` | Strict single-select and restricted to `HasActuals = TRUE`. |
 
 The visible and hidden Business Unit slicers exclude:
 
 - `Fisher & Paykel Technologies`
 - `Fisher & Paykel Technologies - China`
+- `Distributor EU`
+- `Distributor China`
+- `Manufacturing MX`
 
-The exclusion is implemented with both `is not` conditions joined by `AND`.
-The user confirmed in Power BI Desktop that both entries are absent on Scores
-and Trend. This limits the selectable Business Unit values. It does not redefine
-the unfiltered Full Business or Platform calculation scope.
+The visible and hidden Platform slicers also exclude `China ME`. These visual
+filters limit selectable values; they do not redefine unfiltered Full Business
+or Platform calculation scope. The user confirmed the exclusions and matching
+figures in Desktop and reported publishing the updated report. Dynamic
+small-unit eligibility is a separate investigation under BL-018.
 
 The earliest selectable Reporting Month is January 2023 on both pages. The user
 applied a `CalYear >= 2023` visual filter in Desktop while retaining the
@@ -202,6 +206,6 @@ filter in Desktop; underlying source history is retained.
 
 The user confirmed the remaining Desktop acceptance checks. Detailed selections
 and results were not supplied for each subsequently confirmed scenario.
-Publication and the intended-viewer access and result check remain outstanding
-(BL-013).
+The user reported publishing the updated report. The intended-viewer access and
+result check remains outstanding (BL-013).
 

@@ -185,6 +185,27 @@
                               "Value": "'Fisher & Paykel Technologies - China'"
                             }
                           }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Distributor EU'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Distributor China'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Manufacturing MX'"
+                            }
+                          }
                         ]
                       ]
                     }
