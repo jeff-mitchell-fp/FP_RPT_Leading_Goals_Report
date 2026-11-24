@@ -196,6 +196,20 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "1ce6e9d98f5fe4e672ae",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Leading Goals Metric Catalog"
+              }
+            },
+            "Property": "DisplayName"
+          }
+        },
+        "type": "Categorical"
       }
     ]
   }
