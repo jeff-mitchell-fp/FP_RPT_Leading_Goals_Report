@@ -1,4 +1,4 @@
-/// Explicit Ask Your Team survey measures. Use visible presentation measures for results; hidden bases do not apply all reporting guards. Agreement Score describes one question, Category Score averages valid question scores equally, and Overall Score is the provider-supplied Full Business benchmark. Participation Completed counts full survey completions; question/option counts are not unique people across questions or surveys. With no time restriction, results use the latest nonfuture applicable reporting month; an explicit survey or month must resolve to one compatible survey. Monthly applicability carries survey results forward without creating new observations. Do not sum scores or combine surveys into time totals. Blank means unavailable or unsupported context, not measured zero. Reports control IncludeAYT eligibility; ineligible Business Units have no fact rows by the confirmed pipeline rule.
+/// Explicit Ask Your Team survey measures. Use visible presentation measures for results; hidden bases do not apply all reporting guards. Agreement Score describes one question, Category Score averages valid question scores equally, and Avg Score averages valid agreement questions for the selected population. Participation Completed counts full survey completions; question/option counts are not unique people across questions or surveys. With no time restriction, results use the latest nonfuture applicable reporting month; an explicit survey or month must resolve to one compatible survey. Monthly applicability carries survey results forward without creating new observations. Do not sum scores or combine surveys into time totals. Blank means unavailable or unsupported context, not measured zero. Reports control IncludeAYT eligibility; ineligible Business Units have no fact rows by the confirmed pipeline rule.
 table _AYT_Measures
 	lineageTag: 6f4e8611-ce40-494c-9e0d-40a634aea2a1
 	sourceLineageTag: e3062480-cbed-463a-9239-07534ef68bb5
@@ -121,29 +121,6 @@ table _AYT_Measures
 		displayFolder: Participation
 		lineageTag: 7db1ad64-6683-4fd2-b556-a2a0e9cf0cc1
 		sourceLineageTag: f245adec-ccc5-4408-874c-9e7754bb63bc
-		dataCategory: Uncategorized
-
-	/// HELPER: _Overall Score Base
-	/// Returns the supplied decimal overall score for one survey.
-	/// Returns blank when survey context is not singular or the supplied value is missing.
-	measure '_Overall Score Base' = EXTERNALMEASURE("_Overall Score Base", DOUBLE, "DirectQuery to AS - AYT_Metrics")
-		formatString: 0.0%;-0.0%;0.0%
-		isHidden
-		displayFolder: Overall Score\_Helpers
-		lineageTag: 3219d8e1-8ff0-4480-9fc2-09b8e583c244
-		sourceLineageTag: f8d28a7a-e7ae-4c9a-aa0a-201cf5f2b94a
-		dataCategory: Uncategorized
-
-	/// PRESENTATION: Overall Score
-	/// Returns the AYT-supplied Full Business overall score for the resolved survey.
-	/// Retains that benchmark under organisational and question selections.
-	/// A Business Unit selection does not turn this into that unit's own score.
-	/// Use: Survey-level benchmark cards only; not a question or Business Unit result.
-	measure 'Overall Score' = EXTERNALMEASURE("Overall Score", DOUBLE, "DirectQuery to AS - AYT_Metrics")
-		formatString: 0.0%;-0.0%;0.0%
-		displayFolder: Overall Score
-		lineageTag: a5bfea60-50ad-49d8-bb26-0a3b92498470
-		sourceLineageTag: 3310937a-5525-4963-9d31-1db2b9691465
 		dataCategory: Uncategorized
 
 	/// HELPER: _Response Count Base
@@ -325,6 +302,19 @@ table _AYT_Measures
 		displayFolder: _Global Helpers
 		lineageTag: 5bf8bf02-10bf-42e4-8202-40e55a5fc051
 		sourceLineageTag: a77c453b-c1f8-44d6-bd54-f2fe983cd58d
+		dataCategory: Uncategorized
+
+	/// PRESENTATION: Avg Score
+	/// Returns the equal-weight mean of valid agreement question scores for the resolved
+	/// survey and report-filtered organisational population. Ignores item and response-option filters.
+	/// Full Business includes UNATTRIBUTED; organisational detail and subsets exclude it.
+	/// Unavailable scores return blank.
+	/// Use: Cards, organisational tables/matrices, and trends with time totals disabled.
+	measure 'Avg Score' = EXTERNALMEASURE("Avg Score", DOUBLE, "DirectQuery to AS - AYT_Metrics")
+		formatString: 0.0%;-0.0%;0.0%
+		displayFolder: Avg Score
+		lineageTag: bb6a6bfa-5938-4b42-af8e-9f86b4688c23
+		sourceLineageTag: 0aee91ea-8ecb-4809-a406-8596770c84fb
 		dataCategory: Uncategorized
 
 	partition _AYT_Measures = entity

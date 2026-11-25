@@ -1,24 +1,6 @@
 table _LG_Measures
 	lineageTag: c110ee78-f585-46b9-9c6e-5e7c60288ae0
 
-	measure 'AYT Average Agreement Score' =
-			
-			CALCULATE (
-			    AVERAGEX (
-			        VALUES ( dim_AYT_Item[ItemCode] ),
-			        [Agreement Score]
-			    ),
-			    REMOVEFILTERS ( dim_AYT_Item )
-			)
-		formatString: 0.0%;-0.0%;0.0%
-		lineageTag: 9e7422f6-5d47-4394-b14e-60577e4ed89d
-
-		changedProperty = Name
-
-		changedProperty = FormatString
-
-		changedProperty = DisplayFolder
-
 	/// Current score for the catalog metric under the active report filters.
 	measure Score =
 			VAR Metric = SELECTEDVALUE ( 'Leading Goals Metric Catalog'[MetricKey] )
@@ -27,7 +9,7 @@ table _LG_Measures
 			RETURN
 			    SWITCH (
 			        Metric,
-			        "AYT_AVG", [AYT Average Agreement Score],
+			        "AYT_AVG", [Avg Score],
 			        "AYT_PART", [Participation Rate],
 			        "HC_F", [Headcount Female %],
 			        "HC_M", [Headcount Male %],

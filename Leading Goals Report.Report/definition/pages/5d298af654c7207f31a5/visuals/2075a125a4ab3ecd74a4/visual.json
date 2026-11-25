@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "2075a125a4ab3ecd74a4",
   "position": {
     "x": 330,
@@ -143,7 +143,7 @@
             "Property": "BusinessUnitName"
           }
         },
-        "type": "Advanced",
+        "type": "Categorical",
         "filter": {
           "Version": 2,
           "From": [
@@ -175,6 +175,27 @@
                         [
                           {
                             "Literal": {
+                              "Value": "'Distributor China'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Distributor EU'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Distributor IR'"
+                            }
+                          }
+                        ],
+                        [
+                          {
+                            "Literal": {
                               "Value": "'Fisher & Paykel Technologies'"
                             }
                           }
@@ -189,14 +210,7 @@
                         [
                           {
                             "Literal": {
-                              "Value": "'Distributor EU'"
-                            }
-                          }
-                        ],
-                        [
-                          {
-                            "Literal": {
-                              "Value": "'Distributor China'"
+                              "Value": "'Global Commercial'"
                             }
                           }
                         ],
@@ -208,6 +222,21 @@
                           }
                         ]
                       ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
                     }
                   }
                 }

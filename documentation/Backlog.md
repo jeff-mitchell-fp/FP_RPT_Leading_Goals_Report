@@ -28,7 +28,7 @@ the next available ID is `BL-019`. Never reuse an issued ID.
 | BL-002 | The saved Leading Goals composite model contains DirectQuery connections to both `HR_Metrics` and `AYT_Metrics`. |
 | BL-003 | The user confirmed Desktop slicer acceptance, including the January 2023 lower bound and Technologies exclusions. The user subsequently confirmed the Distributor EU, Distributor China, Manufacturing MX and China ME exclusions and matching figures; the updated report was published. |
 | BL-004 | The user confirmed remaining sync and blank-result checks; switching to eCommerce cleared the previous AYT result. |
-| BL-005 | The user confirmed Scores comparisons and remaining checks. BU-level Average Score is unavailable in the AYT report; the method or disposition for its subsequent confirmation was not specified. |
+| BL-005 | The user confirmed Scores comparisons and remaining checks. BU-level Average Score was unavailable in the AYT report at that time. Subsequently, Average Score was switched to the AYT model's `Avg Score`; the user confirmed Desktop checks and reported publishing the model and report. Individual selections and results were not supplied. |
 | BL-006 | The final two-page presentation is recorded in Leading Goals Report Page Plans. Scores uses the active catalog matrix; Trend uses a single Measure dropdown and plots Score, Target and Leading Goal. Report-definition inspection and user screenshots confirm the layout. |
 | BL-007 | Customer Service NZ results matched for October and September 2026; the user confirmed remaining shared-BU and month checks. |
 | BL-008 | The user confirmed matching results for Australia ME, Customer Service AU and the remaining Platform and Full Business scenarios; BU choices narrowed correctly. |

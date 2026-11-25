@@ -14,15 +14,6 @@ cultureInfo en-US
 			      },
 			      "State": "Generated"
 			    },
-			    "table_ayt_measures.ayt_average_agreement_score": {
-			      "Definition": {
-			        "Binding": {
-			          "ConceptualEntity": "_LG_Measures",
-			          "ConceptualProperty": "AYT Average Agreement Score"
-			        }
-			      },
-			      "State": "Generated"
-			    },
 			    "dim_ayt_item.itemlabel": {
 			      "Definition": {
 			        "Binding": {

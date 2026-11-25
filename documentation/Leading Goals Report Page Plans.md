@@ -84,6 +84,8 @@ count. The catalog owns the changing metric inventory, Shared Imperative,
 Goal Statement, display order, score type and AYT item mapping.
 
 `Score` dispatches the selected catalog row to its published HR or AYT measure.
+The Average Score row uses the AYT source model's `Avg Score` measure; the
+former report-local average measure has been removed.
 AYT question rows retain the catalog item code and approved score type. AYT
 Overall Score remains outside report scope.
 
@@ -132,6 +134,9 @@ page requirements.
   confirmed the remaining Desktop checks. AYT Average Score is not available at
   BU level in the AYT report; the method or disposition for its subsequent
   confirmation was not specified.
+- The user subsequently confirmed the Desktop checks after switching Average
+  Score to the AYT source model's `Avg Score` and reported publishing the model
+  and report. Individual selections and results were not supplied.
 
 ## Trend page
 
@@ -201,6 +206,8 @@ filter in Desktop; underlying source history is retained.
   at 12.6% in both the Reporting Month Score card and chart point.
 - The user subsequently confirmed the remaining Trend source comparisons,
   annual-line and interaction checks without providing case-level details.
+- The user confirmed the Desktop checks after the Average Score source-measure
+  switch; individual Trend selections and results were not supplied.
 
 ## Validation still required
 

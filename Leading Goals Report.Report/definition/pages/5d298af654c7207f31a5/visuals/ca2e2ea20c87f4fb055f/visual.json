@@ -1,5 +1,5 @@
 {
-  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.14.0/schema.json",
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.15.0/schema.json",
   "name": "ca2e2ea20c87f4fb055f",
   "position": {
     "x": 30,
@@ -600,6 +600,90 @@
           ]
         },
         "howCreated": "User"
+      },
+      {
+        "name": "cf1b43607032117e424c",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Leading Goals Metric Catalog"
+              }
+            },
+            "Property": "SharedImperative"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "8acfd20bcfb1434a1928",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Leading Goals Metric Catalog"
+              }
+            },
+            "Property": "GoalStatement"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "c91d57e316b06fd9bc2e",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "Leading Goals Metric Catalog"
+              }
+            },
+            "Property": "DisplayName"
+          }
+        },
+        "type": "Categorical"
+      },
+      {
+        "name": "1ab8f2b113046b3e904e",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_LG_Measures"
+              }
+            },
+            "Property": "Score"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "4df3c6c767e492635eb4",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_LG_Measures"
+              }
+            },
+            "Property": "Target"
+          }
+        },
+        "type": "Advanced"
+      },
+      {
+        "name": "df8c84135423455a4ce7",
+        "field": {
+          "Measure": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "_LG_Measures"
+              }
+            },
+            "Property": "Leading Goal"
+          }
+        },
+        "type": "Advanced"
       }
     ]
   }

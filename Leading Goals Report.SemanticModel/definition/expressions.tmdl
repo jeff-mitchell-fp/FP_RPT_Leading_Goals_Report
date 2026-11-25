@@ -22,7 +22,7 @@ expression 'DirectQuery to AS - AYT_Metrics' =
 
 	annotation PBI_IncludeFutureArtifacts = True
 
-	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"29c5d07e-44e2-44c0-b7cc-6f457c20128d"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"7525b746-b2af-4f20-84f5-b2a2eb87c512"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"4fa29926-eaa8-4206-afb0-eb9361555a92"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"e5c47ece-0ece-4fe1-bf70-2b87b26c30a2"}},"objectType":"Table"}]
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"29c5d07e-44e2-44c0-b7cc-6f457c20128d"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"7525b746-b2af-4f20-84f5-b2a2eb87c512"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"4fa29926-eaa8-4206-afb0-eb9361555a92"}},"objectType":"Table"}]
 
 expression stg_LeadingGoalsMetrics =
 		let
