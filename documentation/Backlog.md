@@ -16,7 +16,6 @@ the next available ID is `BL-019`. Never reuse an issued ID.
 | ID | Priority | Status | Item | Dependencies | Evidence or exit condition |
 |---|---|---|---|---|---|
 | BL-012 | P1 | Not started | If label-based organisation syncing fails, implement and validate key-based wrappers using `BusinessUnitCode` and `TREATAS`, while retaining the Trend page's month transfer. | BL-007, BL-008, BL-009 | Wrapped measures pass repeated acceptance checks. |
-| BL-013 | P0 | Not started | After publication and before wider sharing, the user will check the live report with an intended viewer's access to the composite model and both source models. | BL-006, BL-007, BL-008, BL-009, BL-010 | Viewer can access the report and sees the validated results. |
 | BL-014 | P1 | Not started | Parked until feedback on the current report: add a Progression page with independent Base Month and Reporting Month selections. Show both values and the change for each reported figure under the same Business Unit and Platform filters. | BL-006 | Verify each endpoint against its source, including the AYT survey wave applicable to each month. Change equals Reporting Month minus Base Month. Percentage measures show change in percentage points. |
 | BL-018 | P1 | Not started | Investigate dynamically excluding Business Units with fewer than five people from report selections. | BL-003, BL-004 | Agree the headcount definition, period and blank handling, Trend behaviour, cross-model sync and any confidentiality requirements; assess implementation and regression checks before replacing fixed exclusions. |
 
@@ -35,6 +34,7 @@ the next available ID is `BL-019`. Never reuse an issued ID.
 | BL-009 | The user confirmed remaining blank-result and source checks; switching from a populated AYT BU to eCommerce cleared AYT values. |
 | BL-010 | The user confirmed the remaining Reporting Month selection and reset checks. |
 | BL-011 | The report uses an actuals-only HR Month list. The saved Month slicer applies `dim_HR_Calendar[HasActuals] = TRUE`. This decision was made independently of final metric selection. |
+| BL-013 | The user confirmed that the published report's intended-viewer access and result check passed. Individual check details were not supplied. |
 | BL-015 | The user confirmed Trend interactions and remaining source and annual-line checks. Finance January 2023 Voluntary Turnover Rolling 12 matched the source at 12.6% in the card and chart. |
 | BL-016 | The Leading Goals matrix displays Target and Leading Goal values. The user confirmed the Business Unit, Platform and Full Business lookups in Desktop. All ten Target and Leading Goal pairs for Customer Service NZ in October 2026 matched the Parquet source. |
 | BL-017 | The starter annual targets and Leading Goals Parquet file was generated, uploaded to SharePoint and refreshed into the model. Read-back checks verified 1,080 unique rows, with 540 each for 2026 and 2027. |

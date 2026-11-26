@@ -209,10 +209,11 @@ filter in Desktop; underlying source history is retained.
 - The user confirmed the Desktop checks after the Average Score source-measure
   switch; individual Trend selections and results were not supplied.
 
-## Validation still required
+## Validation status
 
 The user confirmed the remaining Desktop acceptance checks. Detailed selections
 and results were not supplied for each subsequently confirmed scenario.
-The user reported publishing the updated report. The intended-viewer access and
-result check remains outstanding (BL-013).
+The user reported publishing the updated report and confirmed that the
+intended-viewer access and result check passed (BL-013). Individual viewer
+check details were not supplied.
 

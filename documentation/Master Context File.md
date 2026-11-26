@@ -61,7 +61,7 @@ The cross-repository references are paths in named source repositories. They are
 | Technologies scope | Agreed | Exclude Fisher & Paykel Technologies and Fisher & Paykel Technologies - China from the Business Unit slicers on both pages. This does not redefine Full Business calculations. |
 | Small-unit fixed exclusions | Implemented and user-validated | Exclude Distributor EU, Distributor China and Manufacturing MX from Business Unit slicers and China ME from Platform slicers on both pages. These slicer exclusions do not redefine Full Business or Platform calculations. Investigate dynamic eligibility under BL-018. |
 | Cross-model slicer propagation | User-confirmed in Desktop | Hidden synced slicers are present and the user confirmed acceptance checks. Key-based wrappers remain conditional on a future sync failure. |
-| Published viewer access | Open | The user will check intended viewer access to the live report, composite model and both source models after publication and before wider sharing. |
+| Published viewer access | User-confirmed | The intended-viewer access and result check passed (BL-013). |
 | Progression page | Parked | Reconsider after feedback on the current two-page report; tracked as BL-014. |
 | Annual target maintenance | User-managed | The user will separately write a script that generates Parquet from the manually maintained CSV source. |
 | 2027 starter targets | Agreed | Retain the current values; the user will update them as new values are received. |
@@ -70,7 +70,7 @@ The cross-repository references are paths in named source repositories. They are
 
 The user confirmed the Target and Leading Goal lookups for Business Unit, Platform and Full Business. All ten Customer Service NZ pairs for October 2026 matched the Parquet source. The user also confirmed that the two Technologies entries are absent from the Business Unit slicers on both pages.
 
-Report-definition inspection confirms the two pages, current bindings, filters, page headers and Trend interactions. The user confirmed the Desktop checks, including the fixed small-unit exclusions and matching figures, and reported publishing the updated report. Intended-viewer validation remains outstanding.
+Report-definition inspection confirms the two pages, current bindings, filters, page headers and Trend interactions. The user confirmed the Desktop checks, including the fixed small-unit exclusions and matching figures, reported publishing the updated report, and confirmed that the intended-viewer check passed.
 
 The annual seed and generated Parquet cover 2023–2027; the user reported
 refreshing the model. The user confirmed one Finance Purpose, Values & Strategy
@@ -83,6 +83,4 @@ matched the HR source at 12.6% in both the snapshot card and chart point.
 
 ## Next session
 
-The user will check the published report using an intended viewer's access to
-the live report, composite model and both source models before wider sharing
-(BL-013).
+No next action agreed.
