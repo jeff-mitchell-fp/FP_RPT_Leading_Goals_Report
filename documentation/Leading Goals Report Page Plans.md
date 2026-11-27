@@ -56,17 +56,25 @@ so each source model receives the selection through its own dimension.
 
 The visible and hidden Business Unit slicers exclude:
 
+- `Carbon Zero and R&D`
+- `Distributor China`
+- `Distributor EU`
+- `Distributor IR`
 - `Fisher & Paykel Technologies`
 - `Fisher & Paykel Technologies - China`
-- `Distributor EU`
-- `Distributor China`
+- `Global Commercial`
+- `Legal`
 - `Manufacturing MX`
 
 The visible and hidden Platform slicers also exclude `China ME`. These visual
 filters limit selectable values; they do not redefine unfiltered Full Business
-or Platform calculation scope. The user confirmed the exclusions and matching
-figures in Desktop and reported publishing the updated report. Dynamic
-small-unit eligibility is a separate investigation under BL-018.
+or Platform calculation scope. The user confirmed earlier exclusions and
+matching figures in Desktop and reported publishing that revision. The current
+nine-entry list is saved on all four Business Unit slicers. The user confirmed
+in Power BI Desktop that `Carbon Zero and R&D` and `Legal` are no longer
+selectable on either Scores or Trend and reported publishing the updated
+Leading Goals Report. Dynamic small-unit eligibility is a separate
+investigation under BL-018.
 
 The earliest selectable Reporting Month is January 2023 on both pages. The user
 applied a `CalYear >= 2023` visual filter in Desktop while retaining the
